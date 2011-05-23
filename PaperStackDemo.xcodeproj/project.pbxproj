@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED67EE78138B12C900487AF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE77138B12C900487AF1 /* UIKit.framework */; };
+		ED67EE7A138B12C900487AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE79138B12C900487AF1 /* Foundation.framework */; };
+		ED67EE7C138B12C900487AF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */; };
+		ED67EE82138B12C900487AF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE80138B12C900487AF1 /* InfoPlist.strings */; };
+		ED67EE85138B12C900487AF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED67EE84138B12C900487AF1 /* main.m */; };
+		ED67EE88138B12C900487AF1 /* PaperStackDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED67EE87138B12C900487AF1 /* PaperStackDemoAppDelegate.m */; };
+		ED67EE8B138B12C900487AF1 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE89138B12C900487AF1 /* MainWindow.xib */; };
+		ED67EE8E138B12C900487AF1 /* PaperStackDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */; };
+		ED67EE91138B12C900487AF1 /* PaperStackDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE8F138B12C900487AF1 /* PaperStackDemoViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ED67EE73138B12C900487AF1 /* PaperStackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperStackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED67EE77138B12C900487AF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ED67EE79138B12C900487AF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ED67EE7F138B12C900487AF1 /* PaperStackDemo-Info.plist */ = {isa = PBXFileReference; path = "PaperStackDemo-Info.plist"; sourceTree = "<group>"; };
+		ED67EE81138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED67EE83138B12C900487AF1 /* PaperStackDemo-Prefix.pch */ = {isa = PBXFileReference; path = "PaperStackDemo-Prefix.pch"; sourceTree = "<group>"; };
+		ED67EE84138B12C900487AF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ED67EE86138B12C900487AF1 /* PaperStackDemoAppDelegate.h */ = {isa = PBXFileReference; path = PaperStackDemoAppDelegate.h; sourceTree = "<group>"; };
+		ED67EE87138B12C900487AF1 /* PaperStackDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaperStackDemoAppDelegate.m; sourceTree = "<group>"; };
+		ED67EE8A138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		ED67EE8C138B12C900487AF1 /* PaperStackDemoViewController.h */ = {isa = PBXFileReference; path = PaperStackDemoViewController.h; sourceTree = "<group>"; };
+		ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaperStackDemoViewController.m; sourceTree = "<group>"; };
+		ED67EE90138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PaperStackDemoViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED67EE70138B12C900487AF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED67EE78138B12C900487AF1 /* UIKit.framework in Frameworks */,
+				ED67EE7A138B12C900487AF1 /* Foundation.framework in Frameworks */,
+				ED67EE7C138B12C900487AF1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED67EE68138B12C900487AF1 = {
+			isa = PBXGroup;
+			children = (
+				ED67EE7D138B12C900487AF1 /* PaperStackDemo */,
+				ED67EE76138B12C900487AF1 /* Frameworks */,
+				ED67EE74138B12C900487AF1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED67EE74138B12C900487AF1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED67EE73138B12C900487AF1 /* PaperStackDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED67EE76138B12C900487AF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED67EE77138B12C900487AF1 /* UIKit.framework */,
+				ED67EE79138B12C900487AF1 /* Foundation.framework */,
+				ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED67EE7D138B12C900487AF1 /* PaperStackDemo */ = {
+			isa = PBXGroup;
+			children = (
+				ED67EE86138B12C900487AF1 /* PaperStackDemoAppDelegate.h */,
+				ED67EE87138B12C900487AF1 /* PaperStackDemoAppDelegate.m */,
+				ED67EE89138B12C900487AF1 /* MainWindow.xib */,
+				ED67EE8C138B12C900487AF1 /* PaperStackDemoViewController.h */,
+				ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */,
+				ED67EE8F138B12C900487AF1 /* PaperStackDemoViewController.xib */,
+				ED67EE7E138B12C900487AF1 /* Supporting Files */,
+			);
+			path = PaperStackDemo;
+			sourceTree = "<group>";
+		};
+		ED67EE7E138B12C900487AF1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED67EE7F138B12C900487AF1 /* PaperStackDemo-Info.plist */,
+				ED67EE80138B12C900487AF1 /* InfoPlist.strings */,
+				ED67EE83138B12C900487AF1 /* PaperStackDemo-Prefix.pch */,
+				ED67EE84138B12C900487AF1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED67EE72138B12C900487AF1 /* PaperStackDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED67EE94138B12C900487AF1 /* Build configuration list for PBXNativeTarget "PaperStackDemo" */;
+			buildPhases = (
+				ED67EE6F138B12C900487AF1 /* Sources */,
+				ED67EE70138B12C900487AF1 /* Frameworks */,
+				ED67EE71138B12C900487AF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaperStackDemo;
+			productName = PaperStackDemo;
+			productReference = ED67EE73138B12C900487AF1 /* PaperStackDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED67EE6A138B12C900487AF1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Mutado;
+			};
+			buildConfigurationList = ED67EE6D138B12C900487AF1 /* Build configuration list for PBXProject "PaperStackDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ED67EE68138B12C900487AF1;
+			productRefGroup = ED67EE74138B12C900487AF1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED67EE72138B12C900487AF1 /* PaperStackDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED67EE71138B12C900487AF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED67EE82138B12C900487AF1 /* InfoPlist.strings in Resources */,
+				ED67EE8B138B12C900487AF1 /* MainWindow.xib in Resources */,
+				ED67EE91138B12C900487AF1 /* PaperStackDemoViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED67EE6F138B12C900487AF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED67EE85138B12C900487AF1 /* main.m in Sources */,
+				ED67EE88138B12C900487AF1 /* PaperStackDemoAppDelegate.m in Sources */,
+				ED67EE8E138B12C900487AF1 /* PaperStackDemoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ED67EE80138B12C900487AF1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED67EE81138B12C900487AF1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		ED67EE89138B12C900487AF1 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED67EE8A138B12C900487AF1 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		ED67EE8F138B12C900487AF1 /* PaperStackDemoViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED67EE90138B12C900487AF1 /* en */,
+			);
+			name = PaperStackDemoViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED67EE92138B12C900487AF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		ED67EE93138B12C900487AF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		ED67EE95138B12C900487AF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PaperStackDemo/PaperStackDemo-Prefix.pch";
+				INFOPLIST_FILE = "PaperStackDemo/PaperStackDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ED67EE96138B12C900487AF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PaperStackDemo/PaperStackDemo-Prefix.pch";
+				INFOPLIST_FILE = "PaperStackDemo/PaperStackDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED67EE6D138B12C900487AF1 /* Build configuration list for PBXProject "PaperStackDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED67EE92138B12C900487AF1 /* Debug */,
+				ED67EE93138B12C900487AF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED67EE94138B12C900487AF1 /* Build configuration list for PBXNativeTarget "PaperStackDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED67EE95138B12C900487AF1 /* Debug */,
+				ED67EE96138B12C900487AF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED67EE6A138B12C900487AF1 /* Project object */;
+}
