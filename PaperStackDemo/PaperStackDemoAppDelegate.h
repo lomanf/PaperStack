@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class PaperStackDemoViewController;
-
 @interface PaperStackDemoAppDelegate : NSObject <UIApplicationDelegate> {
 
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet PaperStackDemoViewController *viewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end

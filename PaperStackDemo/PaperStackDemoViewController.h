@@ -12,4 +12,6 @@
     
 }
 
+- (IBAction)launchPlayer;
+
 @end

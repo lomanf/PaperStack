@@ -7,6 +7,7 @@
 //
 
 #import "PaperStackDemoViewController.h"
+#import "PSPlayerController.h"
 
 @implementation PaperStackDemoViewController
 
@@ -23,15 +24,22 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Actions
+
+- (IBAction)launchPlayer
+{
+    PSPlayerController *ac = [[PSPlayerController alloc] initWithCoder:nil];
+    [self.navigationController pushViewController:ac animated:YES];
+    [ac release];
+}
+
 #pragma mark - View lifecycle
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
-*/
 
 - (void)viewDidUnload
 {

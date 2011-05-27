@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED2E26EC138C9A5A00BC1538 /* PSPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2E26EB138C9A5900BC1538 /* PSPageView.m */; };
+		ED2E26EF138CB58800BC1538 /* PSPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2E26EE138CB58800BC1538 /* PSPlayerController.m */; };
 		ED67EE78138B12C900487AF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE77138B12C900487AF1 /* UIKit.framework */; };
 		ED67EE7A138B12C900487AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE79138B12C900487AF1 /* Foundation.framework */; };
 		ED67EE7C138B12C900487AF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */; };
@@ -16,23 +18,40 @@
 		ED67EE8B138B12C900487AF1 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE89138B12C900487AF1 /* MainWindow.xib */; };
 		ED67EE8E138B12C900487AF1 /* PaperStackDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */; };
 		ED67EE91138B12C900487AF1 /* PaperStackDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE8F138B12C900487AF1 /* PaperStackDemoViewController.xib */; };
+		ED67EE99138B13BF00487AF1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE98138B13BF00487AF1 /* OpenGLES.framework */; };
+		ED67EE9C138B16AE00487AF1 /* example.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE9B138B16AE00487AF1 /* example.pdf */; };
+		ED67EEEF138B1B2E00487AF1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EEEE138B1B2E00487AF1 /* QuartzCore.framework */; };
+		ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD92E138CD1DB0076CC92 /* cover.png */; };
+		ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */; };
+		ED9CD972138EF6E80076CC92 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD971138EF6E80076CC92 /* page.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED2E26EA138C9A5900BC1538 /* PSPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPageView.h; sourceTree = "<group>"; };
+		ED2E26EB138C9A5900BC1538 /* PSPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageView.m; sourceTree = "<group>"; };
+		ED2E26ED138CB58800BC1538 /* PSPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPlayerController.h; sourceTree = "<group>"; };
+		ED2E26EE138CB58800BC1538 /* PSPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPlayerController.m; sourceTree = "<group>"; };
 		ED67EE73138B12C900487AF1 /* PaperStackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperStackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED67EE77138B12C900487AF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ED67EE79138B12C900487AF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		ED67EE7F138B12C900487AF1 /* PaperStackDemo-Info.plist */ = {isa = PBXFileReference; path = "PaperStackDemo-Info.plist"; sourceTree = "<group>"; };
+		ED67EE7F138B12C900487AF1 /* PaperStackDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PaperStackDemo-Info.plist"; sourceTree = "<group>"; };
 		ED67EE81138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		ED67EE83138B12C900487AF1 /* PaperStackDemo-Prefix.pch */ = {isa = PBXFileReference; path = "PaperStackDemo-Prefix.pch"; sourceTree = "<group>"; };
+		ED67EE83138B12C900487AF1 /* PaperStackDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PaperStackDemo-Prefix.pch"; sourceTree = "<group>"; };
 		ED67EE84138B12C900487AF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		ED67EE86138B12C900487AF1 /* PaperStackDemoAppDelegate.h */ = {isa = PBXFileReference; path = PaperStackDemoAppDelegate.h; sourceTree = "<group>"; };
+		ED67EE86138B12C900487AF1 /* PaperStackDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaperStackDemoAppDelegate.h; sourceTree = "<group>"; };
 		ED67EE87138B12C900487AF1 /* PaperStackDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaperStackDemoAppDelegate.m; sourceTree = "<group>"; };
 		ED67EE8A138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		ED67EE8C138B12C900487AF1 /* PaperStackDemoViewController.h */ = {isa = PBXFileReference; path = PaperStackDemoViewController.h; sourceTree = "<group>"; };
+		ED67EE8C138B12C900487AF1 /* PaperStackDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaperStackDemoViewController.h; sourceTree = "<group>"; };
 		ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaperStackDemoViewController.m; sourceTree = "<group>"; };
 		ED67EE90138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PaperStackDemoViewController.xib; sourceTree = "<group>"; };
+		ED67EE98138B13BF00487AF1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		ED67EE9B138B16AE00487AF1 /* example.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = example.pdf; sourceTree = "<group>"; };
+		ED67EEEE138B1B2E00487AF1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ED9CD92E138CD1DB0076CC92 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
+		ED9CD931138CD8FF0076CC92 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		ED9CD971138EF6E80076CC92 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED67EEEF138B1B2E00487AF1 /* QuartzCore.framework in Frameworks */,
+				ED67EE99138B13BF00487AF1 /* OpenGLES.framework in Frameworks */,
 				ED67EE78138B12C900487AF1 /* UIKit.framework in Frameworks */,
 				ED67EE7A138B12C900487AF1 /* Foundation.framework in Frameworks */,
 				ED67EE7C138B12C900487AF1 /* CoreGraphics.framework in Frameworks */,
@@ -49,6 +70,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED2E26D1138C939000BC1538 /* PaperStack */ = {
+			isa = PBXGroup;
+			children = (
+				ED9CD930138CD8870076CC92 /* Core */,
+				ED2E26EA138C9A5900BC1538 /* PSPageView.h */,
+				ED2E26EB138C9A5900BC1538 /* PSPageView.m */,
+				ED2E26ED138CB58800BC1538 /* PSPlayerController.h */,
+				ED2E26EE138CB58800BC1538 /* PSPlayerController.m */,
+			);
+			path = PaperStack;
+			sourceTree = "<group>";
+		};
 		ED67EE68138B12C900487AF1 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +102,8 @@
 		ED67EE76138B12C900487AF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED67EEEE138B1B2E00487AF1 /* QuartzCore.framework */,
+				ED67EE98138B13BF00487AF1 /* OpenGLES.framework */,
 				ED67EE77138B12C900487AF1 /* UIKit.framework */,
 				ED67EE79138B12C900487AF1 /* Foundation.framework */,
 				ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */,
@@ -79,6 +114,8 @@
 		ED67EE7D138B12C900487AF1 /* PaperStackDemo */ = {
 			isa = PBXGroup;
 			children = (
+				ED2E26D1138C939000BC1538 /* PaperStack */,
+				ED67EE9A138B16AE00487AF1 /* Assets */,
 				ED67EE86138B12C900487AF1 /* PaperStackDemoAppDelegate.h */,
 				ED67EE87138B12C900487AF1 /* PaperStackDemoAppDelegate.m */,
 				ED67EE89138B12C900487AF1 /* MainWindow.xib */,
@@ -99,6 +136,25 @@
 				ED67EE84138B12C900487AF1 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED67EE9A138B16AE00487AF1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				ED9CD971138EF6E80076CC92 /* page.png */,
+				ED9CD92E138CD1DB0076CC92 /* cover.png */,
+				ED67EE9B138B16AE00487AF1 /* example.pdf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		ED9CD930138CD8870076CC92 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ED9CD931138CD8FF0076CC92 /* UIImage+Scale.h */,
+				ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +210,9 @@
 				ED67EE82138B12C900487AF1 /* InfoPlist.strings in Resources */,
 				ED67EE8B138B12C900487AF1 /* MainWindow.xib in Resources */,
 				ED67EE91138B12C900487AF1 /* PaperStackDemoViewController.xib in Resources */,
+				ED67EE9C138B16AE00487AF1 /* example.pdf in Resources */,
+				ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */,
+				ED9CD972138EF6E80076CC92 /* page.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +226,9 @@
 				ED67EE85138B12C900487AF1 /* main.m in Sources */,
 				ED67EE88138B12C900487AF1 /* PaperStackDemoAppDelegate.m in Sources */,
 				ED67EE8E138B12C900487AF1 /* PaperStackDemoViewController.m in Sources */,
+				ED2E26EC138C9A5A00BC1538 /* PSPageView.m in Sources */,
+				ED2E26EF138CB58800BC1538 /* PSPlayerController.m in Sources */,
+				ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +305,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PaperStackDemo/PaperStackDemo-Prefix.pch";
 				INFOPLIST_FILE = "PaperStackDemo/PaperStackDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -256,6 +319,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PaperStackDemo/PaperStackDemo-Prefix.pch";
 				INFOPLIST_FILE = "PaperStackDemo/PaperStackDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -281,6 +345,7 @@
 				ED67EE96138B12C900487AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
