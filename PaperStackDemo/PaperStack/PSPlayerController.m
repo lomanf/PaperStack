@@ -8,23 +8,28 @@
 
 #import "PSPlayerController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CCPage.h"
 
 @interface PSPlayerController()
 
 @property (nonatomic, assign) BOOL landscapeMode;
-@property (nonatomic, assign) NSInteger flipRatio;
-@property (nonatomic, assign) CGFloat flipAngle;
 @property (nonatomic, assign) PSPageView *pageTarget;
 @property (nonatomic, retain) PSPageView *pageLeft;
 @property (nonatomic, retain) PSPageView *pageRight;
 
+// drawing elements
+@property (nonatomic, assign) UIView *apex;
+
 - (void)deviceDidRotate;
+- (void)pageCurlWithPoint:(CGPoint)point;
 
 @end
 
 @implementation PSPlayerController
 
-@synthesize landscapeMode, flipRatio, flipAngle, pageTarget, pageLeft, pageRight;
+@synthesize landscapeMode, pageTarget, pageLeft, pageRight;
+@synthesize glView;
+@synthesize apex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +42,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [glView release];
     [pageLeft release];
     [pageRight release];
     [super dealloc];
@@ -65,6 +70,12 @@
 {
     [super viewDidLoad];
 
+    
+    self.glView.datasource = self;
+    
+    self.view.opaque = YES;
+    self.view.backgroundColor = [UIColor blackColor];
+    
     CGRect plRect, prRect;
     
     plRect = self.view.bounds;
@@ -73,11 +84,7 @@
     PSPageView *lp = [[PSPageView alloc] initWithFrame:plRect];
     PSPageView *rp = [[PSPageView alloc] initWithFrame:prRect];
     
-    lp.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    rp.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    lp.transform = CGAffineTransformMakeScale( -1, 1);
-    
-    lp.flipped = YES;
+    [lp setFlippedFlag];
     
     self.pageRight = rp;
     self.pageLeft = lp;
@@ -87,6 +94,15 @@
     
     [lp release];
     [rp release];
+    
+    [self.view bringSubviewToFront:glView];
+    
+    // drawing elements
+    UIView *a = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, 5, 5 )];
+    a.backgroundColor = [UIColor redColor];
+    [self.view addSubview:a];
+    self.apex = a;
+    [a release];
 }
 
 - (void)viewDidUnload
@@ -102,6 +118,7 @@
     
     plRect = self.view.bounds;
     prRect = self.view.bounds;
+    
     self.pageLeft.hidden = YES;
     
     if ( UIInterfaceOrientationIsLandscape( interfaceOrientation ) ) {
@@ -109,20 +126,19 @@
         prRect.origin.x = prRect.size.width;
         plRect.size.width = plRect.size.width * 0.5;
         self.pageLeft.hidden = NO;
-        [self.pageLeft pageWillRotate];
+        [self.pageLeft setNeedsDisplay];
+        [self.pageLeft pageWillRotateToOrientation:interfaceOrientation];
         [self performSelector:@selector(deviceDidRotate) withObject:nil afterDelay:1.0];
         landscapeMode = YES;
+        self.pageLeft.frame = plRect;
     } else {
         landscapeMode = NO;
         [self performSelector:@selector(deviceDidRotate) withObject:nil afterDelay:1.2];
     }
     [self.pageRight setNeedsDisplay];
-    [self.pageRight pageWillRotate];
-    self.pageLeft.isLandscape = landscapeMode;
-    self.pageRight.isLandscape = landscapeMode;
-    self.pageRight.frame = prRect;
-    self.pageLeft.frame = plRect;
+    [self.pageRight pageWillRotateToOrientation:interfaceOrientation];
 
+    self.pageRight.frame = prRect;
     
     // Return YES for supported orientations
     return YES;
@@ -130,9 +146,62 @@
 
 - (void)deviceDidRotate 
 {
-    [self.pageLeft pageDidRotate];
+    if ( landscapeMode ) {
+        [self.pageLeft pageDidRotate];
+    }
     [self.pageRight pageDidRotate];
 }
+
+#pragma mark -
+#pragma ESRenderer Datasource
+
+- (UIImage*)rendererGetFrontTexture
+{
+    return [self.pageTarget textureData];
+}
+
+- (UIImage*)rendererGetBackTexture {
+    return [self.pageTarget textureData];
+}
+
+- (CGRect)rendererGetFrontTextureRect 
+{
+    return [self.pageTarget textureRect];
+}
+
+- (CGRect)rendererGetBackTextureRect 
+{
+    return [self.pageTarget textureRect];
+}
+
+#pragma mark -
+#pragma mark Manipulating
+
+- (void)pageCurlWithPoint:(CGPoint)point
+{
+    CGRect rect = self.view.frame;
+    CGFloat half = rect.size.width * 0.5;
+    CGFloat dx = ( point.x - half ) / half; 
+    CGFloat dy = point.y / rect.size.height; 
+    
+    CGFloat aX = dx;
+    CGFloat aY = -dy * 1.5;
+    
+    apex.center = CGPointMake( half + aX * half, 10 );
+    [self.view bringSubviewToFront:apex];
+    
+    CCPage *page = [glView activePage];
+    page.Ax = aX;
+    page.Ay = aY;
+    page.rho = 0.0;
+    page.theta = 0.12;
+  
+    
+    [glView applyTransform];
+}
+
+#pragma mark -
+#pragma Touches handler
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -142,41 +211,26 @@
     if ( landscapeMode ) {
         if ( touchPoint.x <= self.view.frame.size.width * 0.5 ) {
             self.pageTarget = pageLeft;
-            flipRatio = 0;
-            flipAngle = -M_PI;
         } else {
             self.pageTarget = pageRight;
-            flipRatio = 1;
-            flipAngle = M_PI;
         }
     } else {
         self.pageTarget = pageRight;
-        flipRatio = 1;
-        flipAngle = M_PI * 0.5;
     }
-    CGFloat perc = flipRatio - ( touchPoint.x / self.view.bounds.size.width );
-    [pageTarget pageFlipStartWithTarget:-fabs(flipAngle)];
-    if ( fabsf( perc * flipAngle ) > M_PI * 0.12 ) {
-        [pageTarget pageFlipEnd];
-    }
-    [self.view bringSubviewToFront:pageTarget];
+    // update textures
+    [glView loadTextures];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [pageTarget pageFlipEnd];
+    //[self.glView stopAnimation];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [event.allTouches anyObject];
-	CGPoint touchPoint = [touch locationInView:self.view];
-	
-    CGFloat perc = flipRatio - ( touchPoint.x / self.view.bounds.size.width );
-    CGFloat value = -perc * flipAngle;
-    
-    [pageTarget pageFlipTo:value];    
+	CGPoint touchPoint = [touch locationInView:self.view];        
+	[self pageCurlWithPoint:touchPoint];
 }
-
 
 @end

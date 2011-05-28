@@ -13,15 +13,18 @@
     
 }
 
-@property (nonatomic, assign) UIImageView *pageContent;
 @property (nonatomic, assign) BOOL flipped;
-@property (nonatomic, assign) BOOL isLandscape;
+
+- (void)setFlippedFlag;
 
 - (void)pageFlipStartWithTarget:(CGFloat)value;
 - (void)pageFlipEnd;
 - (void)pageFlipTo:(CGFloat)value;
 
-- (void)pageWillRotate;
+- (void)pageWillRotateToOrientation:(UIDeviceOrientation)orientation;
 - (void)pageDidRotate;
+
+- (UIImage*)textureData;
+- (CGRect)textureRect;
 
 @end

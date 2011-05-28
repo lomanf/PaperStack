@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PSPageView.h"
+#import "ESRenderer.h"
+#import "EAGLView.h"
 
-@interface PSPlayerController : UIViewController {
+@interface PSPlayerController : UIViewController <ESRendererDataSource> {
 @private
     
 }
+
+@property (nonatomic, retain) IBOutlet EAGLView *glView;
 
 @end

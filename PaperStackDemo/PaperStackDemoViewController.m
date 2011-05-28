@@ -28,9 +28,10 @@
 
 - (IBAction)launchPlayer
 {
-    PSPlayerController *ac = [[PSPlayerController alloc] initWithCoder:nil];
+    PSPlayerController *ac = [[PSPlayerController alloc] initWithNibName:@"PSPlayerController" bundle:nil];
     [self.navigationController pushViewController:ac animated:YES];
     [ac release];
+    
 }
 
 #pragma mark - View lifecycle

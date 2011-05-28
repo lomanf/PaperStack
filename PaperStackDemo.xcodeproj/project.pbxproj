@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		ED2E26EC138C9A5A00BC1538 /* PSPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2E26EB138C9A5900BC1538 /* PSPageView.m */; };
 		ED2E26EF138CB58800BC1538 /* PSPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2E26EE138CB58800BC1538 /* PSPlayerController.m */; };
+		ED5C3E0513906BB800C87A53 /* PSDrawings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E0413906BB800C87A53 /* PSDrawings.m */; };
+		ED5C3E0813906C3300C87A53 /* PSPageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E0713906C3300C87A53 /* PSPageCache.m */; };
+		ED5C3E93139092C300C87A53 /* CCPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E8B139092C300C87A53 /* CCPage.m */; };
+		ED5C3E94139092C300C87A53 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E8D139092C300C87A53 /* EAGLView.m */; };
+		ED5C3E95139092C300C87A53 /* ES1Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E90139092C300C87A53 /* ES1Renderer.m */; };
 		ED67EE78138B12C900487AF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE77138B12C900487AF1 /* UIKit.framework */; };
 		ED67EE7A138B12C900487AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE79138B12C900487AF1 /* Foundation.framework */; };
 		ED67EE7C138B12C900487AF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */; };
@@ -24,6 +29,7 @@
 		ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD92E138CD1DB0076CC92 /* cover.png */; };
 		ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */; };
 		ED9CD972138EF6E80076CC92 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD971138EF6E80076CC92 /* page.png */; };
+		EDFE186A13909FBF00A7498E /* PSPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDFE186913909FBF00A7498E /* PSPlayerController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,19 @@
 		ED2E26EB138C9A5900BC1538 /* PSPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageView.m; sourceTree = "<group>"; };
 		ED2E26ED138CB58800BC1538 /* PSPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPlayerController.h; sourceTree = "<group>"; };
 		ED2E26EE138CB58800BC1538 /* PSPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPlayerController.m; sourceTree = "<group>"; };
+		ED5C3E0313906BB800C87A53 /* PSDrawings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDrawings.h; sourceTree = "<group>"; };
+		ED5C3E0413906BB800C87A53 /* PSDrawings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSDrawings.m; sourceTree = "<group>"; };
+		ED5C3E0613906C3300C87A53 /* PSPageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPageCache.h; sourceTree = "<group>"; };
+		ED5C3E0713906C3300C87A53 /* PSPageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageCache.m; sourceTree = "<group>"; };
+		ED5C3E0913906C9500C87A53 /* PSKonstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSKonstants.h; sourceTree = "<group>"; };
+		ED5C3E89139092C300C87A53 /* CCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCommon.h; sourceTree = "<group>"; };
+		ED5C3E8A139092C300C87A53 /* CCPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPage.h; sourceTree = "<group>"; };
+		ED5C3E8B139092C300C87A53 /* CCPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPage.m; sourceTree = "<group>"; };
+		ED5C3E8C139092C300C87A53 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		ED5C3E8D139092C300C87A53 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		ED5C3E8E139092C300C87A53 /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESRenderer.h; sourceTree = "<group>"; };
+		ED5C3E8F139092C300C87A53 /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
+		ED5C3E90139092C300C87A53 /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
 		ED67EE73138B12C900487AF1 /* PaperStackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperStackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED67EE77138B12C900487AF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ED67EE79138B12C900487AF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,6 +71,7 @@
 		ED9CD931138CD8FF0076CC92 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		ED9CD971138EF6E80076CC92 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
+		EDFE186913909FBF00A7498E /* PSPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PSPlayerController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,13 +93,43 @@
 		ED2E26D1138C939000BC1538 /* PaperStack */ = {
 			isa = PBXGroup;
 			children = (
+				ED5C3E881390928000C87A53 /* OpenGL */,
+				ED5C3E0113906BA100C87A53 /* Drawings */,
 				ED9CD930138CD8870076CC92 /* Core */,
+				ED5C3E0613906C3300C87A53 /* PSPageCache.h */,
+				ED5C3E0713906C3300C87A53 /* PSPageCache.m */,
 				ED2E26EA138C9A5900BC1538 /* PSPageView.h */,
 				ED2E26EB138C9A5900BC1538 /* PSPageView.m */,
 				ED2E26ED138CB58800BC1538 /* PSPlayerController.h */,
 				ED2E26EE138CB58800BC1538 /* PSPlayerController.m */,
+				EDFE186913909FBF00A7498E /* PSPlayerController.xib */,
 			);
 			path = PaperStack;
+			sourceTree = "<group>";
+		};
+		ED5C3E0113906BA100C87A53 /* Drawings */ = {
+			isa = PBXGroup;
+			children = (
+				ED5C3E0313906BB800C87A53 /* PSDrawings.h */,
+				ED5C3E0413906BB800C87A53 /* PSDrawings.m */,
+				ED5C3E0913906C9500C87A53 /* PSKonstants.h */,
+			);
+			name = Drawings;
+			sourceTree = "<group>";
+		};
+		ED5C3E881390928000C87A53 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				ED5C3E89139092C300C87A53 /* CCCommon.h */,
+				ED5C3E8A139092C300C87A53 /* CCPage.h */,
+				ED5C3E8B139092C300C87A53 /* CCPage.m */,
+				ED5C3E8C139092C300C87A53 /* EAGLView.h */,
+				ED5C3E8D139092C300C87A53 /* EAGLView.m */,
+				ED5C3E8E139092C300C87A53 /* ESRenderer.h */,
+				ED5C3E8F139092C300C87A53 /* ES1Renderer.h */,
+				ED5C3E90139092C300C87A53 /* ES1Renderer.m */,
+			);
+			name = OpenGL;
 			sourceTree = "<group>";
 		};
 		ED67EE68138B12C900487AF1 = {
@@ -213,6 +263,7 @@
 				ED67EE9C138B16AE00487AF1 /* example.pdf in Resources */,
 				ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */,
 				ED9CD972138EF6E80076CC92 /* page.png in Resources */,
+				EDFE186A13909FBF00A7498E /* PSPlayerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +280,11 @@
 				ED2E26EC138C9A5A00BC1538 /* PSPageView.m in Sources */,
 				ED2E26EF138CB58800BC1538 /* PSPlayerController.m in Sources */,
 				ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */,
+				ED5C3E0513906BB800C87A53 /* PSDrawings.m in Sources */,
+				ED5C3E0813906C3300C87A53 /* PSPageCache.m in Sources */,
+				ED5C3E93139092C300C87A53 /* CCPage.m in Sources */,
+				ED5C3E94139092C300C87A53 /* EAGLView.m in Sources */,
+				ED5C3E95139092C300C87A53 /* ES1Renderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
