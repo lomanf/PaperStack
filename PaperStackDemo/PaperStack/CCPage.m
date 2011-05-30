@@ -8,6 +8,8 @@
 
 
 #import "CCPage.h"
+#import <OpenGLES/ES1/gl.h>
+#import <OpenGLES/ES1/glext.h>
 
 @interface CCPage ()
 // Empty category for "private" methods
@@ -20,7 +22,7 @@
 
 @synthesize width, height, columns, rows;
 @synthesize currentFrame, framesPerCycle;
-@synthesize rho, theta, Ax, Ay;
+@synthesize rho, theta, Ax, Ay, P;
 
 
 - (id)init
@@ -54,7 +56,6 @@
     free(frontStrip_);
   if (backStrip_ != NULL)
     free(backStrip_);
-  
 	[super dealloc];
 }
 
@@ -126,7 +127,7 @@
     for (iiX = 0; iiX < vCountX; iiX++)
     {
       px = (CGFloat)iiX * width / columns;
-      py = (CGFloat)iiY * height / rows;
+      py = (CGFloat)iiY * height / rows - (height*0.5);
       inputMesh_[vi].x = px;
       inputMesh_[vi].y = py;
       textureArray_[vi].x = (CGFloat)iiX / columns;
@@ -191,7 +192,7 @@
  
 }
 
-- (void)deform
+- (void)deform2
 {
   // This method must be called after any values of rho, theta, or A have been changed in order to update the output geometry.
 
@@ -203,6 +204,7 @@
   Vertex3f  v1;   // First stage of the deformation, with only theta and A applied. This results in a curl, but no rotation.
   Vertex3f *vo;   // Pointer to the finished vertex in the output mesh, after applying rho to v1 with a basic rotation transform.
   
+    Ay = -0.5 + fminf( 0.0, Ay );
   // Iterate over the input mesh to deform each vertex.
 	CGFloat R, r, beta, ttheta;
   for (u_short ii = 0; ii < numVertices_; ii++)
@@ -215,15 +217,16 @@
           ttheta = M_PI*0.5; 
       }
     r     = R * sin(ttheta);                       // From R, calculate the radius of the cone cross section intersected by our vertex in 3D space.
-    beta  = asin((vi.x-Ax) / R) / sin(ttheta);          // Angle SCT, the angle of the cone cross section subtended by the arc |ST|.
+      
+    if ( vi.x < Ax ) 
+        beta = 0.0;
+    else
+        beta  = asin((vi.x-Ax) / R) / sin(ttheta);          // Angle SCT, the angle of the cone cross section subtended by the arc |ST|.
+      
     v1.x  = r * sin(beta) + Ax;
-      if ( vi.x <= Ax ) {
-          v1.x = v1.x;
-      }
+      if (vi.x < Ax) v1.x = vi.x;
     v1.y  = R + Ay - r * (1.0f - cos(beta)) * sin(ttheta); // *** MAGIC!!! ***
-      if ( vi.x <= Ax ) {
-          v1.y = v1.y;
-      }
+      if (vi.x < Ax) v1.y = vi.y;
     v1.z  = r * (1.0f - cos(beta)) * cos(ttheta);
 
     // Apply a basic rotation transform around the y axis to rotate the curled page. These two steps could be combined
@@ -233,6 +236,69 @@
     vo->y =  v1.y;
     vo->z = (v1.x * sin(rho) + v1.z * cos(rho));
   }  
+}
+
+- (void)deform
+{    
+	CGFloat RB1, RB2, b1, b2, ipo, R, Rc, beta, ttheta;
+
+//    NSLog(@"Px: %f", P.x );
+    
+    P.y = P.y + 0.01;
+    RB2 = ( 1 + P.y ) * 0.5;
+    RB1 = 1 - RB2;
+    RB1 *= ( 1.0 - fabs( P.x ) ) * 0.5;
+    RB2 *= ( 1.0 - fabs( P.x ) ) * 0.5;
+    
+    b1 = P.x + ( RB1 * 0.5 );
+    b2 = P.x + ( RB2 * 0.5 );
+    ipo = sqrtf( pow( b1 - b2, 2 ) );
+    theta = fminf( asinf( ipo ), M_PI * 0.48 );
+    Ax = P.x * 0.5;
+    Ay = fmaxf( 1 + fminf( RB1, RB2 ) * 0.5 * ( 1 / tanf( theta ) ), 1.1 ) * ( RB1 > RB2 ? 1.0 : -1.0 );
+    
+//    NSLog(@"RB1: %f, RB2: %f", RB1, RB2 );
+//    NSLog(@"Theta: %f", theta );
+//    NSLog(@"Ay: %f", Ay );
+//    NSLog(@"Ax: %f", Ax );
+    
+    // deform mash
+    
+    Vertex2f  vi;
+    Vertex3f  v1;
+    Vertex3f *vo;
+    
+    for ( u_short ii = 0; ii < numVertices_; ii++ ) {
+        vi = inputMesh_[ ii ];
+        
+        ttheta = theta;
+        if ( vi.x < Ax ) {
+            ttheta = M_PI * 0.5;
+        }
+        
+        R = sqrt( pow( vi.x - Ax, 2.0f ) + pow( vi.y - Ay, 2.0f ) );
+        Rc = R * sin( ttheta ); 
+        beta = asin( ( vi.x - Ax ) / R ) / sin( ttheta );
+
+        // translate vertex
+        v1.x  = Rc * sin( beta ) + Ax;
+        if ( RB1 < RB2 ) {
+            v1.y  = R + Ay - Rc * ( 1.0f - cos( beta ) ) * sin( ttheta );
+        } else {
+            v1.y  = R - Ay - Rc * ( 1.0f - cos( beta ) ) * sin( ttheta );
+            v1.y  = -v1.y;
+        }
+        v1.z  = Rc * ( 1.0f - cos( beta ) ) * cos( ttheta );
+        
+        // output vertex
+        vo = &outputMesh_[ ii ];
+        //vo->x = ( v1.x * cos( rho ) - v1.z * sin( rho ) );
+        //vo->y =  v1.y;
+        //vo->z = ( v1.x * sin( rho ) + v1.z * cos( rho ) );
+        vo->x = v1.x;
+        vo->y = v1.y;
+        vo->z = v1.z;
+    }
 }
 
 #pragma mark -

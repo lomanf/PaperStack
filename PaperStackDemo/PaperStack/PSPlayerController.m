@@ -18,7 +18,6 @@
 @property (nonatomic, retain) PSPageView *pageRight;
 
 // drawing elements
-@property (nonatomic, assign) UIView *apex;
 
 - (void)deviceDidRotate;
 - (void)pageCurlWithPoint:(CGPoint)point;
@@ -29,7 +28,6 @@
 
 @synthesize landscapeMode, pageTarget, pageLeft, pageRight;
 @synthesize glView;
-@synthesize apex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,12 +95,6 @@
     
     [self.view bringSubviewToFront:glView];
     
-    // drawing elements
-    UIView *a = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, 5, 5 )];
-    a.backgroundColor = [UIColor redColor];
-    [self.view addSubview:a];
-    self.apex = a;
-    [a release];
 }
 
 - (void)viewDidUnload
@@ -180,24 +172,26 @@
 - (void)pageCurlWithPoint:(CGPoint)point
 {
     CGRect rect = self.view.frame;
-    CGFloat half = rect.size.width * 0.5;
-    CGFloat dx = ( point.x - half ) / half; 
-    CGFloat dy = point.y / rect.size.height; 
+    CGFloat halfw = rect.size.width * 0.5;
+    CGFloat halfh = rect.size.height * 0.5;
+    CGFloat dx = ( point.x - halfw ) / halfw; 
+    CGFloat dy = ( point.y - halfh ) / halfh; 
     
-    CGFloat aX = dx;
-    CGFloat aY = -dy * 1.5;
-    
-    apex.center = CGPointMake( half + aX * half, 10 );
-    [self.view bringSubviewToFront:apex];
-    
+    CGFloat pX = dx;
+    CGFloat pY = -dy;
+   
+    /*
     CCPage *page = [glView activePage];
     page.Ax = aX;
     page.Ay = aY;
     page.rho = 0.0;
-    page.theta = 0.12;
-  
+    page.theta = 0.3;
+    */
     
-    [glView applyTransform];
+    CCPage *page = [glView activePage];
+    page.P = CGPointMake( pX, pY );
+    
+    [glView applyTransform:(point.x/rect.size.width)];
 }
 
 #pragma mark -

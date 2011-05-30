@@ -57,6 +57,7 @@
   u_short    *frontStrip_;   // Index triangle strip for the front side.
   u_short    *backStrip_;    // Index triangle strip for the back side.
   u_short    stripLength_;
+    
 }
 
 @property (nonatomic) CGFloat width;  // We use standard data types to decouple our model class from the implementation details of its view.
@@ -69,6 +70,8 @@
 @property (nonatomic) CGFloat theta;
 @property (nonatomic) CGFloat Ax;
 @property (nonatomic) CGFloat Ay;
+
+@property (nonatomic) CGPoint P;
 
 - (const Vertex2f *) textureArray;
 - (const Vertex3f *) vertices;  // Deformed page mesh as a vertex array.

@@ -10,9 +10,10 @@
  *
  */
 
-#define USE_TRIANGLE_STRIPS 1
-#define PAGE_COLUMNS        20
-#define PAGE_ROWS           25
+#define USE_TRIANGLE_STRIPS     1
+#define SHOW_DEBUG_LINES        1
+#define PAGE_COLUMNS            20
+#define PAGE_ROWS               25
 
 #define DEGREES_TO_RADIANS(__ANGLE__) ((__ANGLE__) / 180.0f * M_PI)
 #define RAD (180.0f / M_PI)

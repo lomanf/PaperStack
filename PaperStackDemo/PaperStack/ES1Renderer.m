@@ -49,7 +49,7 @@
   GLfloat aspectRatio = (GLfloat)backingWidth / backingHeight;
 	glFrustumf(-size, size, -size / aspectRatio, size / aspectRatio, zNear, zFar); 
 	glViewport(0, 0, backingWidth, backingHeight);  
-    glTranslatef(0.0f, -0.5f, -90.0f);
+    glTranslatef(0.0f, -0.0f, -61.0f);
     
     glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -149,10 +149,11 @@
   glLoadIdentity();
   
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT);    
 
   // Load our vertex and texture arrays. This needs to be done only once since the front and back pages share this data.
   glEnableClientState(GL_VERTEX_ARRAY);
+        
   glVertexPointer(3, GL_FLOAT, 0, vertices);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glTexCoordPointer(2, GL_FLOAT, 0, textures);
@@ -182,7 +183,7 @@
   glBindTexture(GL_TEXTURE_2D, texture[1]);
   glDrawElements(GL_TRIANGLES, numFaces * 3, GL_UNSIGNED_SHORT, backFaces);
 #endif
-  
+    
   // This application only creates a single color renderbuffer which is already bound at this point.
   // This call is redundant, but needed if dealing with multiple renderbuffers.
   glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);

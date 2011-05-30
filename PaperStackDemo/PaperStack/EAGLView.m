@@ -30,12 +30,13 @@
     {
         // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-    
+            
         eaglLayer.opaque = NO;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithBool:FALSE], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+                                    [NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
       
         self.backgroundColor = [UIColor darkGrayColor];
+        
         if ( !renderer ) {
             renderer = [[ES1Renderer alloc] init];
             if (!renderer) {
@@ -61,7 +62,7 @@
         rightPage_ = [[CCPage alloc] init];
         rightPage_.currentFrame = 0;
         rightPage_.framesPerCycle = 120;
-        rightPage_.width = 0.75;
+        rightPage_.width = 1.0f;
         rightPage_.height = 1.0f;
         rightPage_.columns = PAGE_COLUMNS;
         rightPage_.rows = PAGE_ROWS;
@@ -88,10 +89,15 @@
   [renderer renderObject:rightPage_];
 }
 
-- (void)applyTransform
+- (void)applyTransform:(CGFloat)time
 {
     [rightPage_ deform];
     [renderer renderObject:rightPage_];
+    
+//    CGFloat rel = ( time - 0.5 ) / 0.5;
+//    CGFloat arel = fabs( rel );
+//    CGFloat irel = ( 1.0 - arel ) * ceilf( rel );
+//    CGFloat iarel = 1.0 - arel;
 }
 
 - (void)loadTextures 
@@ -107,6 +113,11 @@
     rect.origin.y = ( tex.size.height - rect.size.height - rect.origin.y ) / tex.size.height;
     rect.size.width /= tex.size.width;
     rect.size.height /= tex.size.height;
+    
+    // correct width
+    rightPage_.width = ( self.superview.frame.size.width * 0.5 ) / ( self.frame.size.width * 0.5 ) * 0.5;
+    rightPage_.height = self.superview.frame.size.height / self.frame.size.height;
+    [rightPage_ createMesh];
     
     NSLog( @"Rect -->: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height );
     [rightPage_ updateTextureCoord:rect];

@@ -52,6 +52,6 @@
 - (CCPage *)activePage;
 - (void)drawView:(id)sender;
 - (void)drawViewForTime:(CGFloat)time;
-- (void)applyTransform;
+- (void)applyTransform:(CGFloat)time;
 
 @end
