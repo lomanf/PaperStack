@@ -10,8 +10,14 @@
 #import "CCPage.h"
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
+#import "PSDrawings.h"
 
 @interface CCPage ()
+
+@property (nonatomic, assign) CGMutablePathRef curlPath_;
+@property (nonatomic, assign) CGMutablePathRef shadowPath_;
+@property (nonatomic, assign) CGMutablePathRef shadowPathReverse_;
+
 // Empty category for "private" methods
 - (void)createTriangleArray;
 - (void)createTriangleStrip;
@@ -20,9 +26,11 @@
 
 @implementation CCPage
 
+@synthesize delegate;
 @synthesize width, height, columns, rows;
 @synthesize currentFrame, framesPerCycle;
-@synthesize rho, theta, Ax, Ay, P;
+@synthesize SP, P;
+@synthesize curlPath_, shadowPath_, shadowPathReverse_;
 
 
 - (id)init
@@ -30,13 +38,8 @@
     self = [super init];
 	if ( self )
 	{
-    width         = 1.0f;
-    height        = 1.0f;
-    columns       = 8;
-    rows          = 10;
-    theta         = 90.0f;
-    rho           = 0.0f;
-	}
+    
+    }
 	return self;
 }
 
@@ -117,6 +120,7 @@
     free(textureArray_);
   textureArray_ = malloc(sizeof(Vertex2f) * numVertices_);
     
+    
   u_short vi = 0;	// vertex index
   short iiX, iiY;
   CGFloat px, py;
@@ -133,10 +137,9 @@
       textureArray_[vi].x = (CGFloat)iiX / columns;
       textureArray_[vi].y = (CGFloat)(iiY) / rows;
       vi++;
-     // NSLog(@"%d: (%d, %d) = (%0.2f, %0.2f)", vi, iiX, iiY, px, py);
     }
   }
-
+    
   // Once we have our basic page geometry, tesselate it into an array of discrete triangles or triangle strips.
 #if USE_TRIANGLE_STRIPS
   [self createTriangleStrip];
@@ -192,103 +195,107 @@
  
 }
 
-- (void)deform2
-{
-  // This method must be called after any values of rho, theta, or A have been changed in order to update the output geometry.
-
-  // This is the guts of the conical page deformation algorithm, using just basic trigonometry.
-  // Since each vertex is independent of any other, these calculations are very well suited for parallelization using
-  // blocks (i.e., for GCD), vertex shaders (OpenGL ES 2.0), or other available features.
-  
-	Vertex2f  vi;   // Current input vertex, iterated over the flat page input mesh (basic vertex array).
-  Vertex3f  v1;   // First stage of the deformation, with only theta and A applied. This results in a curl, but no rotation.
-  Vertex3f *vo;   // Pointer to the finished vertex in the output mesh, after applying rho to v1 with a basic rotation transform.
-  
-    Ay = -0.5 + fminf( 0.0, Ay );
-  // Iterate over the input mesh to deform each vertex.
-	CGFloat R, r, beta, ttheta;
-  for (u_short ii = 0; ii < numVertices_; ii++)
-  {
-      ttheta = theta;
-    vi    = inputMesh_[ii];                           // Get the current input vertex from our input mesh.
-//    R     = sqrt(vi.x * vi.x + pow(vi.y - A, 2.0f));  // Radius of the circle circumscribed by vertex (vi.x, vi.y) around A on the x-y plane.
-    R     = sqrt(pow(vi.x - Ax, 2.0f) + pow(vi.y - Ay, 2.0f));  // Radius of the circle circumscribed by vertex (vi.x, vi.y) around A on the x-y plane.
-      if ( vi.x <= Ax ) {
-          ttheta = M_PI*0.5; 
-      }
-    r     = R * sin(ttheta);                       // From R, calculate the radius of the cone cross section intersected by our vertex in 3D space.
-      
-    if ( vi.x < Ax ) 
-        beta = 0.0;
-    else
-        beta  = asin((vi.x-Ax) / R) / sin(ttheta);          // Angle SCT, the angle of the cone cross section subtended by the arc |ST|.
-      
-    v1.x  = r * sin(beta) + Ax;
-      if (vi.x < Ax) v1.x = vi.x;
-    v1.y  = R + Ay - r * (1.0f - cos(beta)) * sin(ttheta); // *** MAGIC!!! ***
-      if (vi.x < Ax) v1.y = vi.y;
-    v1.z  = r * (1.0f - cos(beta)) * cos(ttheta);
-
-    // Apply a basic rotation transform around the y axis to rotate the curled page. These two steps could be combined
-    // through simple substitution, but are left separate to keep the math simple for debugging and illustrative purposes.
-    vo    = &outputMesh_[ii];
-    vo->x = (v1.x * cos(rho) - v1.z * sin(rho));
-    vo->y =  v1.y;
-    vo->z = (v1.x * sin(rho) + v1.z * cos(rho));
-  }  
-}
-
 - (void)deform
-{    
-	CGFloat RB1, RB2, b1, b2, ipo, R, Rc, beta, ttheta;
-
-//    NSLog(@"Px: %f", P.x );
+{     
+    CGFloat time = PSDistance( SP, P );
+    CGFloat angle = ( PSAngle( SP, P ) + 0.00001 ) * ( P.y > SP.y ? 1.0 : -1.0 ) + 0.00001;
+    CGFloat side = angle > 0 ? 1.0 : -1.0;
     
-    P.y = P.y + 0.01;
-    RB2 = ( 1 + P.y ) * 0.5;
-    RB1 = 1 - RB2;
-    RB1 *= ( 1.0 - fabs( P.x ) ) * 0.5;
-    RB2 *= ( 1.0 - fabs( P.x ) ) * 0.5;
+    CGFloat sinangle, cosangle, sintetha, costheta;
     
-    b1 = P.x + ( RB1 * 0.5 );
-    b2 = P.x + ( RB2 * 0.5 );
-    ipo = sqrtf( pow( b1 - b2, 2 ) );
-    theta = fminf( asinf( ipo ), M_PI * 0.48 );
-    Ax = P.x * 0.5;
-    Ay = fmaxf( 1 + fminf( RB1, RB2 ) * 0.5 * ( 1 / tanf( theta ) ), 1.1 ) * ( RB1 > RB2 ? 1.0 : -1.0 );
+    sinangle = sinf( angle );
+    cosangle = cosf( angle );
     
-//    NSLog(@"RB1: %f, RB2: %f", RB1, RB2 );
-//    NSLog(@"Theta: %f", theta );
-//    NSLog(@"Ay: %f", Ay );
-//    NSLog(@"Ax: %f", Ax );
+    // interpolate theta
+    CGFloat tt = fmin( fabs( angle ) / ( M_PI_HALF ), 1.0 );
+    CGFloat theta = PSQuad( tt, 0.000001, 0.00001 ) * side;
+    
+    sintetha = sinf( theta );
+    costheta = cosf( theta );
+    
+    // interpolate cone base
+    CGFloat RB = ( time / M_PI );
+    
+    // calculate cone apex
+    CGFloat dist = RB * ( 1 / tanf( theta ) );
+    CGPoint A = CGPointMake( P.x + dist * sinangle, P.y + dist * cosangle );
     
     // deform mash
     
     Vertex2f  vi;
+    CGPoint vp, vn;
+    CGFloat ttheta, alpha, ipo, normal, dx, dy, R, Rc, beta;
     Vertex3f  v1;
     Vertex3f *vo;
+    
+    NSMutableArray *pathBR = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *pathT = [NSMutableArray arrayWithCapacity:0];
+    
+    BOOL isBoundRight;
+    BOOL isBoundTop;
+    BOOL isBoundBottom;
     
     for ( u_short ii = 0; ii < numVertices_; ii++ ) {
         vi = inputMesh_[ ii ];
         
-        ttheta = theta;
-        if ( vi.x < Ax ) {
-            ttheta = M_PI * 0.5;
-        }
+        vp = CGPointMake( vi.x, vi.y );
+        alpha = PSAngle( vp, P ) + ( vp.y > P.y ? angle : -angle );
+        ipo = PSDistance( P, vp );
+        normal = ipo * cosf( alpha );
+        dx = normal * cosangle;
+        dy = normal * sinangle;
+        vn = CGPointMake( vp.x - dx, vp.y + dy );
         
-        R = sqrt( pow( vi.x - Ax, 2.0f ) + pow( vi.y - Ay, 2.0f ) );
-        Rc = R * sin( ttheta ); 
-        beta = asin( ( vi.x - Ax ) / R ) / sin( ttheta );
-
-        // translate vertex
-        v1.x  = Rc * sin( beta ) + Ax;
-        if ( RB1 < RB2 ) {
-            v1.y  = R + Ay - Rc * ( 1.0f - cos( beta ) ) * sin( ttheta );
+        ttheta = theta;
+        
+        R = PSDistance( vp, A ); 
+        Rc = R * sintetha;
+        beta = asinf( normal / R ) / sintetha;
+        
+        if ( vp.x < vn.x ) {
+            
+            v1.x = vp.x;
+            v1.y = vp.y;
+            v1.z = 0.0;
+            
         } else {
-            v1.y  = R - Ay - Rc * ( 1.0f - cos( beta ) ) * sin( ttheta );
-            v1.y  = -v1.y;
+        
+            BOOL skipVertex;
+            // translate vertex
+            if ( abs(beta) >= 0 && abs(beta) <= M_PI * 0.95 ) {
+                // cone distortion
+                skipVertex = NO;
+                v1.x  = vn.x + Rc * sinf( beta ) * cosangle;
+                v1.y  = vn.y - Rc * sinf( beta ) *  costheta * sinangle;
+                v1.z  = Rc * ( 1.0 - cosf( beta ) ) * costheta;
+            } else {
+                // flip over normal
+                skipVertex = YES;
+                v1.x  = vn.x;
+                v1.y  = vn.y;
+                v1.z  = Rc * ( 1.0 - cosf( M_PI ) ) * costheta;
+                CGFloat nredux = ( fabs( normal ) - fabs( Rc * M_PI ) ) * side;
+                v1.x -= nredux * cosangle * side;
+                v1.y += nredux * sinangle * side;
+            }
+            
+            isBoundRight = vp.x == width;
+            isBoundBottom = vp.y == -height * 0.5;
+            isBoundTop = vp.y == height * 0.5;
+            if ( ( ( isBoundRight || isBoundTop || isBoundBottom ) && beta >= M_PI_HALF ) ) {
+                // add to shadow
+                CGPoint sp = CGPointMake( v1.x * 1024 + 512, -v1.y * 1024 + 512 );
+                if ( !isBoundTop ) {
+                    if ( !skipVertex ) {
+                        [pathBR addObject:[NSValue valueWithCGPoint:sp]];
+                    }
+                } else {
+                    if ( !skipVertex ) {
+                        [pathT addObject:[NSValue valueWithCGPoint:sp]];
+                    }
+                }
+            }
         }
-        v1.z  = Rc * ( 1.0f - cos( beta ) ) * cos( ttheta );
         
         // output vertex
         vo = &outputMesh_[ ii ];
@@ -299,8 +306,40 @@
         vo->y = v1.y;
         vo->z = v1.z;
     }
+    
+    // create path
+    curlPath_ = CGPathCreateMutable();
+    shadowPath_ = CGPathCreateMutable();
+    shadowPathReverse_ = CGPathCreateMutable();
+    CGPathMoveToPoint( shadowPathReverse_, NULL, 1024, 0 );
+    CGPathAddLineToPoint( shadowPathReverse_, NULL, 0, 0 );
+    CGPathAddLineToPoint( shadowPathReverse_, NULL, 0, 1024 );
+    
+    CGPoint bp;
+    for ( int i = 0; i < [pathBR count]; i++ ) {
+        CGPoint sp = [(NSValue*)[pathBR objectAtIndex:i] CGPointValue];
+        if ( i == 0 ) {
+            CGPathMoveToPoint( curlPath_, NULL, sp.x, sp.y );
+            CGPathMoveToPoint( shadowPath_, NULL, sp.x, sp.y );
+            bp = sp;
+        }
+        CGPathAddLineToPoint( curlPath_, NULL, sp.x, sp.y );
+        CGPathAddLineToPoint( shadowPath_, NULL, sp.x, sp.y );
+        CGPathAddLineToPoint( shadowPathReverse_, NULL, sp.x, sp.y );
+    }
+    for ( int i = [pathT count]-1; i >=0; i-- ) {
+        CGPoint sp = [(NSValue*)[pathT objectAtIndex:i] CGPointValue];
+        CGPathAddLineToPoint( curlPath_, NULL, sp.x, sp.y );
+        CGPathAddLineToPoint( shadowPath_, NULL, sp.x, sp.y );
+        CGPathAddLineToPoint( shadowPathReverse_, NULL, sp.x, sp.y );
+    }
+    
+    CGPathAddLineToPoint( shadowPathReverse_, NULL, 1024, 0 );
+   
+    [delegate pageDidFinishDeformWithAngle:angle andTime:time point:P theta:theta];
 }
 
+ 
 #pragma mark -
 #pragma mark Private methods
 
@@ -312,11 +351,12 @@
   if (faces_ != NULL)
     free(faces_);
   faces_ = malloc(sizeof(u_short) * numFaces_ * 6);  // Store both front and back triangle arrays in one array.
-  
+    
   u_short vi = 0;	// vertex index  
   u_short index;
   u_short rowNum, colNum;
   u_short ll, lr, ul, ur;
+    
 	for (index = 0; index < numQuads; index++)
 	{	
 		rowNum = index / columns;
@@ -330,8 +370,8 @@
     QuadToTrianglesWindCCWSet(&faces_[vi], ul, ur, ll, lr);
     // Wind the back of the page clockwise so it's visible only when it's been flipped.
     QuadToTrianglesWindCWSet(&faces_[vi + numFaces_ * 3], ul, ur, ll, lr);
-		vi += 6;
-	}
+		vi += 6;        
+    }
 }
 
 - (void)createTriangleStrip
@@ -396,6 +436,21 @@
       index++;
     }
   }
+}
+
+- (CGPathRef)curlPath
+{
+    return curlPath_;
+}
+
+- (CGPathRef)shadowPath
+{
+    return shadowPath_;
+}
+
+- (CGPathRef)shadowPathReverse
+{
+    return shadowPathReverse_;
 }
 
 @end

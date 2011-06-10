@@ -9,6 +9,7 @@
 #import "PSPlayerController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CCPage.h"
+#import "PSDrawings.h"
 
 @interface PSPlayerController()
 
@@ -20,6 +21,8 @@
 // drawing elements
 
 - (void)deviceDidRotate;
+- (CGPoint)convertPointToGL:(CGPoint)point;
+- (void)startPageCurlWithPoint:(CGPoint)point;
 - (void)pageCurlWithPoint:(CGPoint)point;
 
 @end
@@ -166,32 +169,48 @@
     return [self.pageTarget textureRect];
 }
 
+- (CGRect)rendererGetFrontTextureBounds
+{
+    return [self.pageTarget textureBounds];
+}
+
+- (CGRect)rendererGetBackTextureBounds
+{
+    return [self.pageTarget textureBounds];
+}
+
 #pragma mark -
 #pragma mark Manipulating
 
-- (void)pageCurlWithPoint:(CGPoint)point
+- (CGPoint)convertPointToGL:(CGPoint)point 
 {
     CGRect rect = self.view.frame;
     CGFloat halfw = rect.size.width * 0.5;
     CGFloat halfh = rect.size.height * 0.5;
-    CGFloat dx = ( point.x - halfw ) / halfw; 
-    CGFloat dy = ( point.y - halfh ) / halfh; 
+    CGFloat dx = ( point.x - halfw ) / rect.size.width; 
+    CGFloat dy = ( point.y - halfh ) / rect.size.width; 
     
     CGFloat pX = dx;
     CGFloat pY = -dy;
-   
-    /*
-    CCPage *page = [glView activePage];
-    page.Ax = aX;
-    page.Ay = aY;
-    page.rho = 0.0;
-    page.theta = 0.3;
-    */
+    
+    return CGPointMake( pX, pY );
+}
+
+- (void)startPageCurlWithPoint:(CGPoint)point
+{
+    // update textures
+    [glView loadTextures];
     
     CCPage *page = [glView activePage];
-    page.P = CGPointMake( pX, pY );
+    page.SP = [self convertPointToGL:point];
+}
+
+- (void)pageCurlWithPoint:(CGPoint)point
+{  
+    CCPage *page = [glView activePage];
+    page.P = [self convertPointToGL:point];
     
-    [glView applyTransform:(point.x/rect.size.width)];
+    [glView applyTransform];
 }
 
 #pragma mark -
@@ -211,8 +230,9 @@
     } else {
         self.pageTarget = pageRight;
     }
-    // update textures
-    [glView loadTextures];
+    
+    // start curl
+    [self startPageCurlWithPoint:touchPoint];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

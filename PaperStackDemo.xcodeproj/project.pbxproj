@@ -29,6 +29,7 @@
 		ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD92E138CD1DB0076CC92 /* cover.png */; };
 		ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */; };
 		ED9CD972138EF6E80076CC92 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD971138EF6E80076CC92 /* page.png */; };
+		EDB5EFF913A05D7F0005E98D /* PSEffectsView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB5EFF813A05D7E0005E98D /* PSEffectsView.m */; };
 		EDFE186A13909FBF00A7498E /* PSPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDFE186913909FBF00A7498E /* PSPlayerController.xib */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		ED9CD931138CD8FF0076CC92 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		ED9CD971138EF6E80076CC92 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
+		EDB5EFF713A05D7E0005E98D /* PSEffectsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSEffectsView.h; sourceTree = "<group>"; };
+		EDB5EFF813A05D7E0005E98D /* PSEffectsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSEffectsView.m; sourceTree = "<group>"; };
 		EDFE186913909FBF00A7498E /* PSPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PSPlayerController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +131,8 @@
 				ED5C3E8E139092C300C87A53 /* ESRenderer.h */,
 				ED5C3E8F139092C300C87A53 /* ES1Renderer.h */,
 				ED5C3E90139092C300C87A53 /* ES1Renderer.m */,
+				EDB5EFF713A05D7E0005E98D /* PSEffectsView.h */,
+				EDB5EFF813A05D7E0005E98D /* PSEffectsView.m */,
 			);
 			name = OpenGL;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				ED5C3E93139092C300C87A53 /* CCPage.m in Sources */,
 				ED5C3E94139092C300C87A53 /* EAGLView.m in Sources */,
 				ED5C3E95139092C300C87A53 /* ES1Renderer.m in Sources */,
+				EDB5EFF913A05D7F0005E98D /* PSEffectsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

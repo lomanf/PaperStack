@@ -43,13 +43,14 @@
   [EAGLContext setCurrentContext:context];
   glBindFramebufferOES(GL_FRAMEBUFFER_OES, defaultFramebuffer);
     
-	const GLfloat zNear = 0.01f, zFar = 100.0f, fieldOfView = 1.0f; 
+	//const GLfloat zNear = 0.01f, zFar = 100.0f, fieldOfView = 1.0f; 
 	glMatrixMode(GL_PROJECTION); 
-	GLfloat size = zNear * tanf(DEGREES_TO_RADIANS(fieldOfView) / 2.0f); 
-  GLfloat aspectRatio = (GLfloat)backingWidth / backingHeight;
-	glFrustumf(-size, size, -size / aspectRatio, size / aspectRatio, zNear, zFar); 
+	//GLfloat size = zNear * tanf(DEGREES_TO_RADIANS(fieldOfView) / 2.0f); 
+    //GLfloat aspectRatio = (GLfloat)backingWidth / backingHeight;
+	//glFrustumf(-size, size, -size / aspectRatio, size / aspectRatio, zNear, zFar); 
 	glViewport(0, 0, backingWidth, backingHeight);  
-    glTranslatef(0.0f, -0.0f, -61.0f);
+    //glTranslatef(0.0f, 0.0f, 0.0f);
+    glOrthof(0.0f, 1.0f, 0.0f, 1.0f, -1.0f, 1.0f);
     
     glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -145,15 +146,16 @@
   const Vertex3f  *vertices   = [obj vertices];
   const Vertex2f  *textures   = [obj textureArray];
     
-  glMatrixMode(GL_MODELVIEW);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  
+  glOrthof(-0.5f, 0.5f, -0.5f, 0.5f, -1.0f, 1.0f);
+      
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   glClear(GL_COLOR_BUFFER_BIT);    
-
+    
   // Load our vertex and texture arrays. This needs to be done only once since the front and back pages share this data.
   glEnableClientState(GL_VERTEX_ARRAY);
-        
+            
   glVertexPointer(3, GL_FLOAT, 0, vertices);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glTexCoordPointer(2, GL_FLOAT, 0, textures);

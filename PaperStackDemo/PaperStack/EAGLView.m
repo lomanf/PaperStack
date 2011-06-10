@@ -6,9 +6,16 @@
 //  Copyright lunaray 2010. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "EAGLView.h"
-
 #import "ES1Renderer.h"
+#import "PSEffectsView.h"
+
+@interface EAGLView()
+
+@property (nonatomic, retain) PSEffectsView* effectsView;
+
+@end
 
 @implementation EAGLView
 
@@ -16,6 +23,7 @@
 @dynamic animationFrameInterval;
 @synthesize animationTime;
 @synthesize datasource;
+@synthesize effectsView;
 
 // You must implement this method
 + (Class)layerClass
@@ -31,11 +39,11 @@
         // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
             
-        eaglLayer.opaque = NO;
+        eaglLayer.opaque = YES;
         eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithBool:YES], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+                                    [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
       
-        self.backgroundColor = [UIColor darkGrayColor];
+        self.backgroundColor = [UIColor clearColor];
         
         if ( !renderer ) {
             renderer = [[ES1Renderer alloc] init];
@@ -66,7 +74,16 @@
         rightPage_.height = 1.0f;
         rightPage_.columns = PAGE_COLUMNS;
         rightPage_.rows = PAGE_ROWS;
+        rightPage_.delegate = self;
         [rightPage_ createMesh];
+        
+        
+        CGRect rect = self.bounds;
+        PSEffectsView *aView = [[PSEffectsView alloc] initWithFrame:rect];
+        [self.layer addSublayer:aView.layer];
+        self.effectsView = aView;
+        [aView release];
+
   }
     
   return self;
@@ -74,7 +91,8 @@
 
 - (void)drawView:(id)sender
 {
-  [renderer renderObject:rightPage_];
+    [renderer renderObject:rightPage_];
+    
   if (animating)
   {
     [rightPage_ incrementTime];
@@ -89,9 +107,10 @@
   [renderer renderObject:rightPage_];
 }
 
-- (void)applyTransform:(CGFloat)time
+- (void)applyTransform
 {
     [rightPage_ deform];
+    //[renderer renderObjectShadow:rightPage_];
     [renderer renderObject:rightPage_];
     
 //    CGFloat rel = ( time - 0.5 ) / 0.5;
@@ -109,21 +128,27 @@
     UIImage *tex = [renderer.datasource rendererGetFrontTexture];
     CGRect rect = [renderer.datasource rendererGetFrontTextureRect];
     
+    // correct width
+    rightPage_.width = ( self.superview.frame.size.width * 0.5 ) / ( self.frame.size.width * 0.5 ) * 0.5;
+    rightPage_.height = self.superview.frame.size.height / self.frame.size.height;
+    rightPage_.width = rect.size.width / self.frame.size.width;
+    rightPage_.height = rect.size.height / self.frame.size.height;
+    [rightPage_ createMesh];
+    
+    // interpolate texture rect
     rect.origin.x /= tex.size.width;
     rect.origin.y = ( tex.size.height - rect.size.height - rect.origin.y ) / tex.size.height;
     rect.size.width /= tex.size.width;
     rect.size.height /= tex.size.height;
     
-    // correct width
-    rightPage_.width = ( self.superview.frame.size.width * 0.5 ) / ( self.frame.size.width * 0.5 ) * 0.5;
-    rightPage_.height = self.superview.frame.size.height / self.frame.size.height;
-    [rightPage_ createMesh];
-    
     NSLog( @"Rect -->: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height );
     [rightPage_ updateTextureCoord:rect];
 }
 - (void)layoutSubviews
-{
+{ 
+    effectsView.frame = self.superview.frame;
+//    effectsView.frame = self.bounds;
+//  [self.superview addSubview:effectsView];
   [renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
   [renderer setupView:(CAEAGLLayer*)self.layer];
   [self drawView:nil];
@@ -203,6 +228,14 @@
 - (void)setDatasource:(id<ESRendererDataSource>)value
 {
     renderer.datasource = value;
+}
+
+#pragma mark -
+#pragma mark CCPageDelegate
+
+- (void)pageDidFinishDeformWithAngle:(CGFloat)angle andTime:(CGFloat)time point:(CGPoint)point theta:(CGFloat)theta
+{
+    [effectsView updateCurlPath:[rightPage_ curlPath] withShadow:[rightPage_ shadowPath] time:time angle:angle point:point theta:theta];
 }
 
 - (void)dealloc

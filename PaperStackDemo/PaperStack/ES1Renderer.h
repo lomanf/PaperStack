@@ -12,6 +12,7 @@
 #import "ESRenderer.h"
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
+#import "CCCommon.h"
 
 @interface ES1Renderer : NSObject <ESRenderer>
 {

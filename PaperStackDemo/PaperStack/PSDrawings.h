@@ -32,10 +32,18 @@ CGMutablePathRef PSCreatePagePath( CGRect rect, CGFloat padding, CGFloat span );
 
 CGMutablePathRef PSCreatePageSquarePath( CGRect rect, CGFloat padding, CGFloat span );
 
+
 unsigned int PSNextPOT( unsigned int x );
 
-CGPoint PSVectorBetweenPoints(CGPoint firstPoint, CGPoint secondPoint);
+CGPoint PSVector( CGPoint firstPoint, CGPoint secondPoint );
 
-CGFloat PSDistanceBetweenPoints(CGPoint firstPoint, CGPoint secondPoint);
+CGFloat PSDistance( CGPoint firstPoint, CGPoint secondPoint );
 
-CGFloat PSAngleBetweenCGPoints(CGPoint firstPoint, CGPoint secondPoint);
+CGFloat PSAngle( CGPoint firstPoint, CGPoint secondPoint );
+
+CGFloat PSQuad( CGFloat ft, CGFloat f0, CGFloat f1 );
+
+CGFloat PSLinear( CGFloat ft, CGFloat f0, CGFloat f1 );
+
+CGFloat PSPower( CGFloat ft, CGFloat f0, CGFloat f1, CGFloat p );
+

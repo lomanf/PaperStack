@@ -9,7 +9,8 @@
 #import "PSDrawings.h"
 
 
-CGMutablePathRef PSCreatePagePath( CGRect rect, CGFloat padding, CGFloat span ) {
+CGMutablePathRef PSCreatePagePath( CGRect rect, CGFloat padding, CGFloat span ) 
+{
     CGFloat radius = rect.size.height * 0.05;
     CGFloat sp = radius * 0.25;
     CGFloat dpadding = span;
@@ -25,7 +26,8 @@ CGMutablePathRef PSCreatePagePath( CGRect rect, CGFloat padding, CGFloat span ) 
     return path;
 }
 
-CGMutablePathRef PSCreatePageSquarePath( CGRect rect, CGFloat padding, CGFloat span ) {
+CGMutablePathRef PSCreatePageSquarePath( CGRect rect, CGFloat padding, CGFloat span ) 
+{
     CGFloat dpadding = span;
     CGFloat ox = rect.origin.x;
     CGMutablePathRef path = CGPathCreateMutable();
@@ -47,44 +49,33 @@ unsigned int PSNextPOT( unsigned int x ) {
     return x + 1;
 }
 
-CGPoint PSVectorBetweenPoints(CGPoint firstPoint, CGPoint secondPoint) {
-	// NSLog(@"Point One: %f, %f", firstPoint.x, firstPoint.y);
-	// NSLog(@"Point Two: %f, %f", secondPoint.x, secondPoint.y);
-	
-	CGFloat xDifference = firstPoint.x - secondPoint.x;
-	CGFloat yDifference = firstPoint.y - secondPoint.y;
-	
-	CGPoint result = CGPointMake(xDifference, yDifference);
-	
-	return result;
-}
-
-CGFloat PSDistanceBetweenPoints(CGPoint firstPoint, CGPoint secondPoint) {
-	CGFloat distance;
-	
-	//Square difference in x
-	CGFloat xDifferenceSquared = pow(firstPoint.x - secondPoint.x, 2);
-	// NSLog(@"xDifferenceSquared: %f", xDifferenceSquared);
-	
-	// Square difference in y
-	CGFloat yDifferenceSquared = pow(firstPoint.y - secondPoint.y, 2);
-	// NSLog(@"yDifferenceSquared: %f", yDifferenceSquared);
-	
-	// Add and take Square root
-	distance = sqrt(xDifferenceSquared + yDifferenceSquared);
-	// NSLog(@"Distance: %f", distance);
-	return distance;
-	
-}
-
-CGFloat PSAngleBetweenCGPoints(CGPoint firstPoint, CGPoint secondPoint)
+CGPoint PSVector( CGPoint firstPoint, CGPoint secondPoint ) 
 {
-	CGPoint previousDifference = PSVectorBetweenPoints(firstPoint, secondPoint);
-	CGFloat xDifferencePrevious = previousDifference.x;
-    
-	CGFloat previousDistance = PSDistanceBetweenPoints(firstPoint,
-													 secondPoint);
-	CGFloat previousRotation = acosf(xDifferencePrevious / previousDistance); 
-	
-	return previousRotation;
+	return CGPointMake( firstPoint.x - secondPoint.x, firstPoint.y - secondPoint.y );
+}
+
+CGFloat PSDistance( CGPoint firstPoint, CGPoint secondPoint ) 
+{
+	return sqrtf( powf( firstPoint.x - secondPoint.x, 2 ) + powf( firstPoint.y - secondPoint.y, 2 ) );
+}
+
+CGFloat PSAngle( CGPoint firstPoint, CGPoint secondPoint )
+{
+	return acosf( PSVector( firstPoint, secondPoint ).x / PSDistance( firstPoint, secondPoint) );
+}
+
+CGFloat PSQuad( CGFloat ft, CGFloat f0, CGFloat f1 )
+{
+    return f0 + (f1 - f0) * ft * ft;	
+}
+
+CGFloat PSLinear( CGFloat ft, CGFloat f0, CGFloat f1 )
+
+{
+    return f0 + (f1 - f0) * ft;	
+}
+
+CGFloat PSPower( CGFloat ft, CGFloat f0, CGFloat f1, CGFloat p )
+{
+    return f0 + (f1 - f0) * powf(ft, p);
 }

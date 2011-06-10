@@ -20,6 +20,8 @@
 - (UIImage*)rendererGetBackTexture;
 - (CGRect)rendererGetFrontTextureRect;
 - (CGRect)rendererGetBackTextureRect;
+- (CGRect)rendererGetFrontTextureBounds;
+- (CGRect)rendererGetBackTextureBounds;
 
 @end
 

@@ -29,6 +29,13 @@
 
 #import "CCCommon.h"
 
+@protocol CCPageDelegate <NSObject>
+
+- (void)pageDidFinishDeformWithAngle:(CGFloat)angle andTime:(CGFloat)time point:(CGPoint)point theta:(CGFloat)theta;
+
+@end
+
+
 @interface CCPage : NSObject
 {
   CGFloat width;    // Width of the page (x axis)                   }
@@ -37,10 +44,6 @@
   u_short  rows;     // Number of mesh subdivisions along the y axis }
 
   CGFloat rho;      // Rotation of the page around the spine of the book (y axis).
-  CGFloat theta;    // Angle of the cone modeling the page curl deformation. Valid range of {0...π/2}.
-                    // Very small values close to zero may give weird but interesting results such as a scroll effect.
-                    // Smaller values produce a pronounced curling effect across the width of the page.
-                    // A value of π/2 (90˚) results in a perfectly flat page.
     
   u_short  currentFrame;   // The current frame in the animation sequence. Range of {0...framesPerCycle}.
   u_short  framesPerCycle; // Total number of frames in one complete animation sequence (one page flip).
@@ -49,6 +52,7 @@
   Vertex2f  *inputMesh_;
   Vertex3f  *outputMesh_;    // Vertex array for the page (front and back combined) after being deformed by rho, theta, and A deformation parameters.
   Vertex2f  *textureArray_;
+    
   u_short    numVertices_;   // For large, complex meshes where the vertex count exceeds the max range of u_short (65535),
                             // replace with unsigned longs where needed. For most purposes unsigned shorts should suffice and conserve memory.
   Vertex3f  *triangles_;
@@ -66,12 +70,9 @@
 @property (nonatomic) u_short rows;
 @property (nonatomic) u_short currentFrame;
 @property (nonatomic) u_short framesPerCycle;
-@property (nonatomic) CGFloat rho;
-@property (nonatomic) CGFloat theta;
-@property (nonatomic) CGFloat Ax;
-@property (nonatomic) CGFloat Ay;
-
+@property (nonatomic) CGPoint SP;
 @property (nonatomic) CGPoint P;
+@property (nonatomic, assign) id<CCPageDelegate> delegate;
 
 - (const Vertex2f *) textureArray;
 - (const Vertex3f *) vertices;  // Deformed page mesh as a vertex array.
@@ -87,6 +88,10 @@
 - (CGFloat) currentTime;
 - (void) deformForTime:(CGFloat)t;  // t from {0...1}
 - (void) deform;
+
+- (CGPathRef)curlPath;
+- (CGPathRef)shadowPath;
+- (CGPathRef)shadowPathReverse;
 
 
 @end

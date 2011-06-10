@@ -26,5 +26,6 @@
 
 - (UIImage*)textureData;
 - (CGRect)textureRect;
+- (CGRect)textureBounds;
 
 @end

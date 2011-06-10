@@ -12,8 +12,10 @@
 
 #define USE_TRIANGLE_STRIPS     1
 #define SHOW_DEBUG_LINES        1
-#define PAGE_COLUMNS            20
-#define PAGE_ROWS               25
+#define PAGE_COLUMNS            40
+#define PAGE_ROWS               60
+
+#define M_PI_HALF               M_PI * 0.5
 
 #define DEGREES_TO_RADIANS(__ANGLE__) ((__ANGLE__) / 180.0f * M_PI)
 #define RAD (180.0f / M_PI)
@@ -55,6 +57,12 @@ typedef struct
 	u_char b;
 	u_char a;
 } Color4b;
+
+typedef struct {
+	Vertex3f v1;
+	Vertex3f v2;
+	Vertex3f v3;
+} Triangle3D;
 
 static inline Vertex2f Vertex2fMake(CGFloat inX, CGFloat inY)
 {
@@ -160,6 +168,15 @@ static inline Color4b Color4bMake(u_char inR, u_char inG, u_char inB, u_char inA
 	return ret;
 }
 
+static inline Triangle3D Triangle3DMake(Vertex3f inV1, Vertex3f inV2, Vertex3f inV3)
+{
+	Triangle3D ret;
+	ret.v1 = inV1;
+	ret.v2 = inV2;
+	ret.v3 = inV3;
+	return ret;
+}
+
 static inline void QuadToTrianglesWindCWSet(u_short *vertex, CGFloat ul, CGFloat ur, CGFloat ll, CGFloat lr)
 {
   // Break a quad into two triangles, since OpenGL ES does not support quads. Clockwise winding.
@@ -180,6 +197,41 @@ static inline void QuadToTrianglesWindCCWSet(u_short *vertex, CGFloat ul, CGFloa
   vertex[3] = lr;
   vertex[4] = ur;
   vertex[5] = ul;
+}
+
+static inline float vectorMagnitude( Vector3f vector ){
+    return sqrt((vector.x * vector.x) + (vector.y * vector.y) + (vector.z * vector.z)); 
+}
+
+static inline void normalizeVector(Vector3f *vector)
+{
+    float vecMag = vectorMagnitude(*vector);
+    vector->x /= vecMag;
+    vector->y /= vecMag;
+    vector->z /= vecMag;
+}
+
+
+static inline Vector3f Vector3DMakeWithStartAndEndPoints(Vertex3f start, Vertex3f end)
+{
+    Vector3f ret;
+    ret.x = end.x - start.x;
+    ret.y = end.y - start.y;
+    ret.z = end.z - start.z;
+    normalizeVector(&ret);
+    return ret;
+}
+
+static inline Vector3f Triangle3DCalculateSurfaceNormal( Triangle3D triangle )
+{
+    Vector3f u = Vector3DMakeWithStartAndEndPoints(triangle.v2, triangle.v1);
+    Vector3f v = Vector3DMakeWithStartAndEndPoints(triangle.v3, triangle.v1);
+    
+    Vector3f ret;
+    ret.x = (u.y * v.z) - (u.z * v.y);
+    ret.y = (u.z * v.x) - (u.x * v.z);
+    ret.z = (u.x * v.y) - (u.y * v.x);
+    return ret;
 }
 
 static inline CGFloat funcLinear(CGFloat ft, CGFloat f0, CGFloat f1)

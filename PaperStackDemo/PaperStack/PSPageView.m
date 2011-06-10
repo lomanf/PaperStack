@@ -170,6 +170,11 @@
     return [self.pageCache textureRect];
 }
 
+- (CGRect)textureBounds
+{
+    return self.pageCache.bounds;
+}
+
 #pragma mark -
 #pragma mark Page Flip handlers
 

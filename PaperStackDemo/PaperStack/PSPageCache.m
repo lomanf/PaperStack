@@ -95,7 +95,6 @@ static CGMutablePathRef pagePath;
     NSLog( @"UIImage: %d, %d", potW, potH );
     
     CGContextRef contextRef = CGBitmapContextCreate( data, potW, potH, 8, potW * 4, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaPremultipliedLast );
-    //CGContextRef contextRef = CGBitmapContextCreate( data, potW, potH, 8, potW * 4, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaNoneSkipLast );
     CGRect rect = CGRectMake( 0, potH - self.frame.size.height, self.frame.size.width, self.frame.size.height );
     CGContextDrawImage( contextRef, rect, CGImage );
     CGImageRef img = CGBitmapContextCreateImage( contextRef );
