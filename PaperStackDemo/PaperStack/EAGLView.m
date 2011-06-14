@@ -9,11 +9,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EAGLView.h"
 #import "ES1Renderer.h"
-#import "PSEffectsView.h"
+#import "PSEffects.h"
 
 @interface EAGLView()
 
-@property (nonatomic, retain) PSEffectsView* effectsView;
+- (void)drawView:(id)sender;
+
+@property (nonatomic, retain) PSPage* leftPage_;
+@property (nonatomic, retain) PSPage* rightPage_;
+@property (nonatomic, retain) PSEffects* effects_;
 
 @end
 
@@ -23,7 +27,8 @@
 @dynamic animationFrameInterval;
 @synthesize animationTime;
 @synthesize datasource;
-@synthesize effectsView;
+
+@synthesize leftPage_, rightPage_, effects_;
 
 // You must implement this method
 + (Class)layerClass
@@ -67,60 +72,45 @@
             displayLinkSupported = TRUE;
         }
         
-        rightPage_ = [[CCPage alloc] init];
-        rightPage_.currentFrame = 0;
-        rightPage_.framesPerCycle = 120;
-        rightPage_.width = 1.0f;
-        rightPage_.height = 1.0f;
-        rightPage_.columns = PAGE_COLUMNS;
-        rightPage_.rows = PAGE_ROWS;
-        rightPage_.delegate = self;
-        [rightPage_ createMesh];
+        PSPage *aPage = [[PSPage alloc] init];
+        aPage.currentFrame = 0;
+        aPage.framesPerCycle = 120;
+        aPage.width = 1.0f;
+        aPage.height = 1.0f;
+        aPage.columns = PAGE_COLUMNS;
+        aPage.rows = PAGE_ROWS;
+        aPage.delegate = self;
+        [aPage createMesh];
         
+        self.rightPage_ = aPage;
         
-        CGRect rect = self.bounds;
-        PSEffectsView *aView = [[PSEffectsView alloc] initWithFrame:rect];
-        [self.layer addSublayer:aView.layer];
-        self.effectsView = aView;
-        [aView release];
+        self.clearsContextBeforeDrawing = YES;
 
-  }
+        PSEffects *aEffects = [[PSEffects alloc] init];
+        self.effects_ = aEffects;
+        [aEffects release];
+}
     
   return self;
 }
 
 - (void)drawView:(id)sender
 {
-    [renderer renderObject:rightPage_];
-    
-  if (animating)
-  {
-    [rightPage_ incrementTime];
-    self.animationTime = [rightPage_ currentTime];
-    [rightPage_ deformForTime:animationTime];
-  }
-}
 
-- (void)drawViewForTime:(CGFloat)time
-{
-  [rightPage_ deformForTime:time];
-  [renderer renderObject:rightPage_];
 }
 
 - (void)applyTransform
 {
     [rightPage_ deform];
-    //[renderer renderObjectShadow:rightPage_];
-    [renderer renderObject:rightPage_];
-    
-//    CGFloat rel = ( time - 0.5 ) / 0.5;
-//    CGFloat arel = fabs( rel );
-//    CGFloat irel = ( 1.0 - arel ) * ceilf( rel );
-//    CGFloat iarel = 1.0 - arel;
+    [renderer renderObject:rightPage_ withEffects:effects_];    
 }
 
 - (void)loadTextures 
 {
+    
+    [effects_ buildEffects];
+    [renderer loadEffects];
+     
     [renderer loadTextures];
     
     // update texture coord
@@ -144,14 +134,13 @@
     NSLog( @"Rect -->: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height );
     [rightPage_ updateTextureCoord:rect];
 }
+
 - (void)layoutSubviews
 { 
-    effectsView.frame = self.superview.frame;
-//    effectsView.frame = self.bounds;
-//  [self.superview addSubview:effectsView];
-  [renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
-  [renderer setupView:(CAEAGLLayer*)self.layer];
-  [self drawView:nil];
+    effects_.bounds = self.bounds;
+    [renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
+    [renderer setupView:(CAEAGLLayer*)self.layer];
+    [self drawView:nil];
 }
 
 - (NSInteger)animationFrameInterval
@@ -183,20 +172,18 @@
 {
   if (!animating)
   {
-    if (displayLinkSupported)
+    if (displayLinkSupported )
     {
       // CADisplayLink is API new to iPhone SDK 3.1. Compiling against earlier versions will result in a warning, but can be dismissed
       // if the system version runtime check for CADisplayLink exists in -initWithCoder:. The runtime check ensures this code will
       // not be called in system versions earlier than 3.1.
-      
       displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(drawView:)];
       [displayLink setFrameInterval:animationFrameInterval];
       [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    }
-    else
+    } else {
       animationTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)((1.0 / 60.0) * animationFrameInterval) target:self selector:@selector(drawView:) userInfo:nil repeats:TRUE];
-    
-    rightPage_.currentFrame = animationTime * rightPage_.framesPerCycle;
+    }
+      
     animating = TRUE;
   }
 }
@@ -220,9 +207,14 @@
   }
 }
 
-- (CCPage *)activePage
+- (PSPage *)activePage
 {
   return rightPage_;
+}
+
+- (PSEffects *)activeEffects
+{
+    return effects_;
 }
 
 - (void)setDatasource:(id<ESRendererDataSource>)value
@@ -235,15 +227,15 @@
 
 - (void)pageDidFinishDeformWithAngle:(CGFloat)angle andTime:(CGFloat)time point:(CGPoint)point theta:(CGFloat)theta
 {
-    [effectsView updateCurlPath:[rightPage_ curlPath] withShadow:[rightPage_ shadowPath] time:time angle:angle point:point theta:theta];
+    [effects_ updateCurlPath:[rightPage_ curlPath] withShadow:[rightPage_ shadowPath] time:time angle:angle point:point theta:theta];
 }
 
 - (void)dealloc
 {
-  [rightPage_ release];
-  [renderer release];
-  
-  [super dealloc];
+    [rightPage_ release];
+    [effects_ release];
+    [renderer release];
+    [super dealloc];
 }
 
 @end

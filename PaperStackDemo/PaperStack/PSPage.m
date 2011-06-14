@@ -7,12 +7,12 @@
 //
 
 
-#import "CCPage.h"
+#import "PSPage.h"
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 #import "PSDrawings.h"
 
-@interface CCPage ()
+@interface PSPage ()
 
 @property (nonatomic, assign) CGMutablePathRef curlPath_;
 @property (nonatomic, assign) CGMutablePathRef shadowPath_;
@@ -24,7 +24,7 @@
 @end
 
 
-@implementation CCPage
+@implementation PSPage
 
 @synthesize delegate;
 @synthesize width, height, columns, rows;

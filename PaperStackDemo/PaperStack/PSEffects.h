@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ESCommon.h"
 
-@interface PSEffectsView : UIView {
-    
+@interface PSEffects : NSObject {
+    Vertex2f *shaderVertices_;
+    Vertex2f *shaderCoords_;
 }
 
+@property (nonatomic, assign) CGRect bounds;
+@property (nonatomic, retain) UIImage *renderImage;
+
+- (void)buildEffects;
 - (void)updateCurlPath:(CGPathRef)path withShadow:(CGPathRef)shadow time:(CGFloat)time angle:(CGFloat)angle point:(CGPoint)point theta:(CGFloat)theta;
+
+- (const Vertex2f *)shaderVertices;
+- (const Vertex2f *)shaderCoords;
 
 @end

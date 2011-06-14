@@ -18,6 +18,7 @@
 
 - (UIImage*)rendererGetFrontTexture;
 - (UIImage*)rendererGetBackTexture;
+- (UIImage*)rendererGetShaderTexture;
 - (CGRect)rendererGetFrontTextureRect;
 - (CGRect)rendererGetBackTextureRect;
 - (CGRect)rendererGetFrontTextureBounds;
@@ -28,9 +29,10 @@
 @protocol ESRenderer <NSObject>
 
 - (void)loadTextures;
+- (void)loadEffects;
 - (void)setupView:(CAEAGLLayer *)layer;
 - (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
-- (void)renderObject:(id)obj;
+- (void)renderObject:(id)obj withEffects:(id)effects;
 
 @property (nonatomic, assign) id<ESRendererDataSource> datasource;
 

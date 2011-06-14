@@ -12,13 +12,14 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "ESRenderer.h"
-#import "CCCommon.h"
-#import "CCPage.h"
+#import "ESCommon.h"
+#import "PSPage.h"
+#import "PSEffects.h"
 
 // This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
 // The view content is basically an EAGL surface you render your OpenGL scene into.
 // Note that setting the view non-opaque will only work if the EAGL surface has an alpha channel.
-@interface EAGLView : UIView <CCPageDelegate>
+@interface EAGLView : UIView <PSPageDelegate>
 {
   CGFloat animationTime;
 @private
@@ -33,12 +34,6 @@
   // isn't available.
   id displayLink;
   NSTimer *animationTimer;
-  
-  CCPage *leftPage_;  // Probably not good design. Model should be moved out of the view and into the controller.
-  CCPage *rightPage_; // May only need one page object for the actively turning page, unless we want to
-                      // draw the underlying pages with a curve rather than flat, in which case we'd need three.
-                      // We could also implement an interesting "shuffle" of many pages flipping at once with
-                      // multiple CCPage objects with slightly different time values.
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
@@ -47,11 +42,10 @@
 @property (nonatomic,assign) id<ESRendererDataSource> datasource;
 
 - (void)loadTextures;
+- (PSPage *)activePage;
+- (PSEffects *)activeEffects;
 - (void)startAnimation;
 - (void)stopAnimation;
-- (CCPage *)activePage;
-- (void)drawView:(id)sender;
-- (void)drawViewForTime:(CGFloat)time;
 - (void)applyTransform;
 
 @end

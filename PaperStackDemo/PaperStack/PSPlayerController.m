@@ -8,7 +8,7 @@
 
 #import "PSPlayerController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "CCPage.h"
+#import "PSPage.h"
 #import "PSDrawings.h"
 
 @interface PSPlayerController()
@@ -179,6 +179,11 @@
     return [self.pageTarget textureBounds];
 }
 
+- (UIImage*)rendererGetShaderTexture
+{
+    return [glView activeEffects].renderImage;
+}
+
 #pragma mark -
 #pragma mark Manipulating
 
@@ -201,13 +206,13 @@
     // update textures
     [glView loadTextures];
     
-    CCPage *page = [glView activePage];
+    PSPage *page = [glView activePage];
     page.SP = [self convertPointToGL:point];
 }
 
 - (void)pageCurlWithPoint:(CGPoint)point
 {  
-    CCPage *page = [glView activePage];
+    PSPage *page = [glView activePage];
     page.P = [self convertPointToGL:point];
     
     [glView applyTransform];
@@ -237,7 +242,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //[self.glView stopAnimation];
+
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

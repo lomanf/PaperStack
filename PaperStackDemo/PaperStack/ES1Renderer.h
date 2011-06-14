@@ -12,7 +12,7 @@
 #import "ESRenderer.h"
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
-#import "CCCommon.h"
+#import "ESCommon.h"
 
 @interface ES1Renderer : NSObject <ESRenderer>
 {
@@ -25,13 +25,13 @@
   
     // The OpenGL ES names for the framebuffer and renderbuffer used to render to this view
     GLuint defaultFramebuffer, colorRenderbuffer;
-    GLuint texture[2];
+    GLuint texture[5];
 }
 
 @property (nonatomic, assign) id<ESRendererDataSource> datasource;
 
 - (void)setupView:(CAEAGLLayer *)layer;
 - (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
-- (void)renderObject:(id)obj;
+- (void)renderObject:(id)obj withEffects:(id)effects;
 
 @end

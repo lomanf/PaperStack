@@ -1,42 +1,15 @@
-//
-//  CCPage.h
-//  ConeCurl
-//
-//  Created by W. Dana Nuon on 4/18/10.
-//  Copyright 2010 lunaray. All rights reserved.
-//
-//  Based on "Deforming Pages of 3D Electronic Books" by Lichan Hong, Stuart K. Card, and Jindong (JD) Chen
-//  of Palo Alto Research Center:
-//  http://www2.parc.com/istl/groups/uir/publications/items/UIR-2004-10-Hong-DeformingPages.pdf
-//
-//  Portions borrowed and slightly modified from Jeff LaMarche, (C) 2009.
-//
-//  We model our page as a single vertex array indexed by two distinct triangle arrays with alternate windings
-//  to represent the front and back faces. This allows us to use two different textures for each side of the page,
-//  making things easier and offering maximum image fidelity. Were we to model the page as a single solid object
-//  we'd have to use one texture for both the front and back sides, requiring an inefficient, awkwardly squished texture.
-//
-//  TODO: Calculate surface normals so we can enable proper lighting.
-//        Add finger-tracking method, i.e., calculate values of rho, theta, and A for arbitraty coordinate (x, y).
-//        Use blocks to optimize code where appropriate.
-//
-//  History:
-//  20100514-wdn: Various bug fixes.
-//  20100505-wdn: Initial version for public release at http://wdnuon.blogspot.com/2010/05/implementing-ibooks-page-curling-using.html
-
-
 #import <Foundation/Foundation.h>
 
-#import "CCCommon.h"
+#import "ESCommon.h"
 
-@protocol CCPageDelegate <NSObject>
+@protocol PSPageDelegate <NSObject>
 
 - (void)pageDidFinishDeformWithAngle:(CGFloat)angle andTime:(CGFloat)time point:(CGPoint)point theta:(CGFloat)theta;
 
 @end
 
 
-@interface CCPage : NSObject
+@interface PSPage : NSObject
 {
   CGFloat width;    // Width of the page (x axis)                   }
   CGFloat height;   // Height of the page (y axis)                  }--- Must call -createMesh if any of these properties change.
@@ -72,7 +45,7 @@
 @property (nonatomic) u_short framesPerCycle;
 @property (nonatomic) CGPoint SP;
 @property (nonatomic) CGPoint P;
-@property (nonatomic, assign) id<CCPageDelegate> delegate;
+@property (nonatomic, assign) id<PSPageDelegate> delegate;
 
 - (const Vertex2f *) textureArray;
 - (const Vertex3f *) vertices;  // Deformed page mesh as a vertex array.

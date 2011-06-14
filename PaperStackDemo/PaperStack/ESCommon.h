@@ -1,14 +1,3 @@
-/*
- *  CCCommon.h
- *  ConeCurl
- *
- *  Created by W. Dana Nuon on 4/18/10.
- *  Copyright 2010 lunaray. All rights reserved.
- *
- *  Portions borrowed and slightly modified from Jeff LaMarche's incredibly informative OpenGL ES tutorials:
- *  http://iphonedevelopment.blogspot.com/2009/05/opengl-es-from-ground-up-table-of.html
- *
- */
 
 #define USE_TRIANGLE_STRIPS     1
 #define SHOW_DEBUG_LINES        1
