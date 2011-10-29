@@ -7,12 +7,13 @@
 //
 
 #import "PaperStackDemoViewController.h"
-#import "PSPlayerController.h"
+#import "PSPDFPageViewController.h"
 
 @implementation PaperStackDemoViewController
 
 - (void)dealloc
 {
+    CGPDFDocumentRelease(pdf);
     [super dealloc];
 }
 
@@ -28,9 +29,11 @@
 
 - (IBAction)launchPlayer
 {
-    PSPlayerController *ac = [[PSPlayerController alloc] initWithNibName:@"PSPlayerController" bundle:nil];
-    [self.navigationController pushViewController:ac animated:YES];
-    [ac release];
+    PSPagesViewController *aController = [[PSPagesViewController alloc] initWithNibName:nil bundle:nil];
+    aController.datasource = self;
+    aController.shouldUseInitialEmptyLeftPage = NO;
+    [self.navigationController pushViewController:aController animated:YES];
+    [aController release];
     
 }
 
@@ -40,6 +43,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // load pdf
+    CFURLRef pdfURL = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("book.pdf"), NULL, NULL);
+    pdf = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+
 }
 
 - (void)viewDidUnload
@@ -53,6 +61,21 @@
 {
     // Return YES for supported orientations
     return YES;
+}
+
+#pragma mark -
+#pragma mark - PSPagesViewControllerDatasource
+
+- (NSUInteger)pagesNumberOfControllers
+{
+    return CGPDFDocumentGetNumberOfPages(pdf);
+}
+
+- (UIViewController*)pagesPageViewControllerAtIndex:(NSUInteger)index
+{
+    CGPDFPageRef page = CGPDFDocumentGetPage(pdf, index+1);
+    PSPDFPageViewController *aController = [[PSPDFPageViewController alloc] initwithPDFPage:page];
+    return [aController autorelease];
 }
 
 @end

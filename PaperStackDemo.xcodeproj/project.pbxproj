@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED2E26EC138C9A5A00BC1538 /* PSPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2E26EB138C9A5900BC1538 /* PSPageView.m */; };
-		ED2E26EF138CB58800BC1538 /* PSPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2E26EE138CB58800BC1538 /* PSPlayerController.m */; };
-		ED5C3E0513906BB800C87A53 /* PSDrawings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E0413906BB800C87A53 /* PSDrawings.m */; };
-		ED5C3E0813906C3300C87A53 /* PSPageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E0713906C3300C87A53 /* PSPageCache.m */; };
-		ED5C3E93139092C300C87A53 /* PSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E8B139092C300C87A53 /* PSPage.m */; };
-		ED5C3E94139092C300C87A53 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E8D139092C300C87A53 /* EAGLView.m */; };
-		ED5C3E95139092C300C87A53 /* ES1Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5C3E90139092C300C87A53 /* ES1Renderer.m */; };
 		ED67EE78138B12C900487AF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE77138B12C900487AF1 /* UIKit.framework */; };
 		ED67EE7A138B12C900487AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE79138B12C900487AF1 /* Foundation.framework */; };
 		ED67EE7C138B12C900487AF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE7B138B12C900487AF1 /* CoreGraphics.framework */; };
@@ -24,33 +17,25 @@
 		ED67EE8E138B12C900487AF1 /* PaperStackDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */; };
 		ED67EE91138B12C900487AF1 /* PaperStackDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE8F138B12C900487AF1 /* PaperStackDemoViewController.xib */; };
 		ED67EE99138B13BF00487AF1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EE98138B13BF00487AF1 /* OpenGLES.framework */; };
-		ED67EE9C138B16AE00487AF1 /* example.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE9B138B16AE00487AF1 /* example.pdf */; };
+		ED67EE9C138B16AE00487AF1 /* book.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ED67EE9B138B16AE00487AF1 /* book.pdf */; };
 		ED67EEEF138B1B2E00487AF1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED67EEEE138B1B2E00487AF1 /* QuartzCore.framework */; };
-		ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD92E138CD1DB0076CC92 /* cover.png */; };
-		ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */; };
-		ED9CD972138EF6E80076CC92 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9CD971138EF6E80076CC92 /* page.png */; };
-		EDB5EFF913A05D7F0005E98D /* PSEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB5EFF813A05D7E0005E98D /* PSEffects.m */; };
-		EDFE186A13909FBF00A7498E /* PSPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDFE186913909FBF00A7498E /* PSPlayerController.xib */; };
+		ED84114D145AEC4E00E2E4D1 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841134145AEC4E00E2E4D1 /* UIImage+Scale.m */; };
+		ED84114E145AEC4E00E2E4D1 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841137145AEC4E00E2E4D1 /* EAGLView.m */; };
+		ED84114F145AEC4E00E2E4D1 /* ES1Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841139145AEC4E00E2E4D1 /* ES1Renderer.m */; };
+		ED841150145AEC4E00E2E4D1 /* PSDrawings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED84113D145AEC4E00E2E4D1 /* PSDrawings.m */; };
+		ED841151145AEC4E00E2E4D1 /* PSEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = ED84113F145AEC4E00E2E4D1 /* PSEffects.m */; };
+		ED841152145AEC4E00E2E4D1 /* PSPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841142145AEC4E00E2E4D1 /* PSPage.m */; };
+		ED841153145AEC4E00E2E4D1 /* PSPageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841144145AEC4E00E2E4D1 /* PSPageCache.m */; };
+		ED841154145AEC4E00E2E4D1 /* PSPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841146145AEC4E00E2E4D1 /* PSPagesViewController.m */; };
+		ED841155145AEC4E00E2E4D1 /* PSPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED841148145AEC4E00E2E4D1 /* PSPageView.m */; };
+		ED841156145AEC4E00E2E4D1 /* PSPDFPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED84114A145AEC4E00E2E4D1 /* PSPDFPageView.m */; };
+		ED841157145AEC4E00E2E4D1 /* PSPDFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED84114C145AEC4E00E2E4D1 /* PSPDFPageViewController.m */; };
+		EDB2B70513AD0F5200C2CD6E /* shadow_m.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB2B70313AD0F5200C2CD6E /* shadow_m.png */; };
+		EDB2B70613AD0F5200C2CD6E /* shadow_tb.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB2B70413AD0F5200C2CD6E /* shadow_tb.png */; };
+		EDB2B70813AD11EA00C2CD6E /* shadow_bb.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB2B70713AD11EA00C2CD6E /* shadow_bb.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ED2E26EA138C9A5900BC1538 /* PSPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPageView.h; sourceTree = "<group>"; };
-		ED2E26EB138C9A5900BC1538 /* PSPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageView.m; sourceTree = "<group>"; };
-		ED2E26ED138CB58800BC1538 /* PSPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPlayerController.h; sourceTree = "<group>"; };
-		ED2E26EE138CB58800BC1538 /* PSPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPlayerController.m; sourceTree = "<group>"; };
-		ED5C3E0313906BB800C87A53 /* PSDrawings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDrawings.h; sourceTree = "<group>"; };
-		ED5C3E0413906BB800C87A53 /* PSDrawings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSDrawings.m; sourceTree = "<group>"; };
-		ED5C3E0613906C3300C87A53 /* PSPageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPageCache.h; sourceTree = "<group>"; };
-		ED5C3E0713906C3300C87A53 /* PSPageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageCache.m; sourceTree = "<group>"; };
-		ED5C3E0913906C9500C87A53 /* PSKonstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSKonstants.h; sourceTree = "<group>"; };
-		ED5C3E89139092C300C87A53 /* ESCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCommon.h; sourceTree = "<group>"; };
-		ED5C3E8A139092C300C87A53 /* PSPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPage.h; sourceTree = "<group>"; };
-		ED5C3E8B139092C300C87A53 /* PSPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPage.m; sourceTree = "<group>"; };
-		ED5C3E8C139092C300C87A53 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
-		ED5C3E8D139092C300C87A53 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
-		ED5C3E8E139092C300C87A53 /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESRenderer.h; sourceTree = "<group>"; };
-		ED5C3E8F139092C300C87A53 /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
-		ED5C3E90139092C300C87A53 /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
 		ED67EE73138B12C900487AF1 /* PaperStackDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperStackDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED67EE77138B12C900487AF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ED67EE79138B12C900487AF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,15 +51,36 @@
 		ED67EE8D138B12C900487AF1 /* PaperStackDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaperStackDemoViewController.m; sourceTree = "<group>"; };
 		ED67EE90138B12C900487AF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PaperStackDemoViewController.xib; sourceTree = "<group>"; };
 		ED67EE98138B13BF00487AF1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		ED67EE9B138B16AE00487AF1 /* example.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = example.pdf; sourceTree = "<group>"; };
+		ED67EE9B138B16AE00487AF1 /* book.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = book.pdf; sourceTree = "<group>"; };
 		ED67EEEE138B1B2E00487AF1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		ED9CD92E138CD1DB0076CC92 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
-		ED9CD931138CD8FF0076CC92 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
-		ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
-		ED9CD971138EF6E80076CC92 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
-		EDB5EFF713A05D7E0005E98D /* PSEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSEffects.h; sourceTree = "<group>"; };
-		EDB5EFF813A05D7E0005E98D /* PSEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSEffects.m; sourceTree = "<group>"; };
-		EDFE186913909FBF00A7498E /* PSPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PSPlayerController.xib; sourceTree = "<group>"; };
+		ED841133145AEC4E00E2E4D1 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		ED841134145AEC4E00E2E4D1 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		ED841136145AEC4E00E2E4D1 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		ED841137145AEC4E00E2E4D1 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		ED841138145AEC4E00E2E4D1 /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
+		ED841139145AEC4E00E2E4D1 /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
+		ED84113A145AEC4E00E2E4D1 /* ESCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESCommon.h; sourceTree = "<group>"; };
+		ED84113B145AEC4E00E2E4D1 /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESRenderer.h; sourceTree = "<group>"; };
+		ED84113C145AEC4E00E2E4D1 /* PSDrawings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDrawings.h; sourceTree = "<group>"; };
+		ED84113D145AEC4E00E2E4D1 /* PSDrawings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSDrawings.m; sourceTree = "<group>"; };
+		ED84113E145AEC4E00E2E4D1 /* PSEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSEffects.h; sourceTree = "<group>"; };
+		ED84113F145AEC4E00E2E4D1 /* PSEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSEffects.m; sourceTree = "<group>"; };
+		ED841140145AEC4E00E2E4D1 /* PSKonstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSKonstants.h; sourceTree = "<group>"; };
+		ED841141145AEC4E00E2E4D1 /* PSPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPage.h; sourceTree = "<group>"; };
+		ED841142145AEC4E00E2E4D1 /* PSPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPage.m; sourceTree = "<group>"; };
+		ED841143145AEC4E00E2E4D1 /* PSPageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPageCache.h; sourceTree = "<group>"; };
+		ED841144145AEC4E00E2E4D1 /* PSPageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageCache.m; sourceTree = "<group>"; };
+		ED841145145AEC4E00E2E4D1 /* PSPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPagesViewController.h; sourceTree = "<group>"; };
+		ED841146145AEC4E00E2E4D1 /* PSPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPagesViewController.m; sourceTree = "<group>"; };
+		ED841147145AEC4E00E2E4D1 /* PSPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPageView.h; sourceTree = "<group>"; };
+		ED841148145AEC4E00E2E4D1 /* PSPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPageView.m; sourceTree = "<group>"; };
+		ED841149145AEC4E00E2E4D1 /* PSPDFPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFPageView.h; sourceTree = "<group>"; };
+		ED84114A145AEC4E00E2E4D1 /* PSPDFPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFPageView.m; sourceTree = "<group>"; };
+		ED84114B145AEC4E00E2E4D1 /* PSPDFPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFPageViewController.h; sourceTree = "<group>"; };
+		ED84114C145AEC4E00E2E4D1 /* PSPDFPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFPageViewController.m; sourceTree = "<group>"; };
+		EDB2B70313AD0F5200C2CD6E /* shadow_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_m.png; sourceTree = "<group>"; };
+		EDB2B70413AD0F5200C2CD6E /* shadow_tb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_tb.png; sourceTree = "<group>"; };
+		EDB2B70713AD11EA00C2CD6E /* shadow_bb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_bb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,53 +99,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED2E26D1138C939000BC1538 /* PaperStack */ = {
-			isa = PBXGroup;
-			children = (
-				ED5C3E881390928000C87A53 /* OpenGL */,
-				ED5C3E0113906BA100C87A53 /* Drawings */,
-				ED9CD930138CD8870076CC92 /* Core */,
-				ED5C3E0613906C3300C87A53 /* PSPageCache.h */,
-				ED5C3E0713906C3300C87A53 /* PSPageCache.m */,
-				ED2E26EA138C9A5900BC1538 /* PSPageView.h */,
-				ED2E26EB138C9A5900BC1538 /* PSPageView.m */,
-				ED2E26ED138CB58800BC1538 /* PSPlayerController.h */,
-				ED2E26EE138CB58800BC1538 /* PSPlayerController.m */,
-				EDFE186913909FBF00A7498E /* PSPlayerController.xib */,
-			);
-			path = PaperStack;
-			sourceTree = "<group>";
-		};
-		ED5C3E0113906BA100C87A53 /* Drawings */ = {
-			isa = PBXGroup;
-			children = (
-				ED5C3E0313906BB800C87A53 /* PSDrawings.h */,
-				ED5C3E0413906BB800C87A53 /* PSDrawings.m */,
-				ED5C3E0913906C9500C87A53 /* PSKonstants.h */,
-			);
-			name = Drawings;
-			sourceTree = "<group>";
-		};
-		ED5C3E881390928000C87A53 /* OpenGL */ = {
-			isa = PBXGroup;
-			children = (
-				ED5C3E89139092C300C87A53 /* ESCommon.h */,
-				ED5C3E8C139092C300C87A53 /* EAGLView.h */,
-				ED5C3E8D139092C300C87A53 /* EAGLView.m */,
-				ED5C3E8E139092C300C87A53 /* ESRenderer.h */,
-				ED5C3E8F139092C300C87A53 /* ES1Renderer.h */,
-				ED5C3E90139092C300C87A53 /* ES1Renderer.m */,
-				ED5C3E8A139092C300C87A53 /* PSPage.h */,
-				ED5C3E8B139092C300C87A53 /* PSPage.m */,
-				EDB5EFF713A05D7E0005E98D /* PSEffects.h */,
-				EDB5EFF813A05D7E0005E98D /* PSEffects.m */,
-			);
-			name = OpenGL;
-			sourceTree = "<group>";
-		};
 		ED67EE68138B12C900487AF1 = {
 			isa = PBXGroup;
 			children = (
+				ED841130145AEC4E00E2E4D1 /* Vendor */,
 				ED67EE7D138B12C900487AF1 /* PaperStackDemo */,
 				ED67EE76138B12C900487AF1 /* Frameworks */,
 				ED67EE74138B12C900487AF1 /* Products */,
@@ -169,7 +132,6 @@
 		ED67EE7D138B12C900487AF1 /* PaperStackDemo */ = {
 			isa = PBXGroup;
 			children = (
-				ED2E26D1138C939000BC1538 /* PaperStack */,
 				ED67EE9A138B16AE00487AF1 /* Assets */,
 				ED67EE86138B12C900487AF1 /* PaperStackDemoAppDelegate.h */,
 				ED67EE87138B12C900487AF1 /* PaperStackDemoAppDelegate.m */,
@@ -196,20 +158,69 @@
 		ED67EE9A138B16AE00487AF1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				ED9CD971138EF6E80076CC92 /* page.png */,
-				ED9CD92E138CD1DB0076CC92 /* cover.png */,
-				ED67EE9B138B16AE00487AF1 /* example.pdf */,
+				EDB2B70713AD11EA00C2CD6E /* shadow_bb.png */,
+				EDB2B70313AD0F5200C2CD6E /* shadow_m.png */,
+				EDB2B70413AD0F5200C2CD6E /* shadow_tb.png */,
+				ED67EE9B138B16AE00487AF1 /* book.pdf */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		ED9CD930138CD8870076CC92 /* Core */ = {
+		ED841130145AEC4E00E2E4D1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				ED9CD931138CD8FF0076CC92 /* UIImage+Scale.h */,
-				ED9CD932138CD8FF0076CC92 /* UIImage+Scale.m */,
+				ED841131145AEC4E00E2E4D1 /* PaperStack */,
 			);
-			name = Core;
+			name = Vendor;
+			path = PaperStackDemo/Vendor;
+			sourceTree = "<group>";
+		};
+		ED841131145AEC4E00E2E4D1 /* PaperStack */ = {
+			isa = PBXGroup;
+			children = (
+				ED841132145AEC4E00E2E4D1 /* Additions */,
+				ED841135145AEC4E00E2E4D1 /* GL */,
+				ED84113C145AEC4E00E2E4D1 /* PSDrawings.h */,
+				ED84113D145AEC4E00E2E4D1 /* PSDrawings.m */,
+				ED84113E145AEC4E00E2E4D1 /* PSEffects.h */,
+				ED84113F145AEC4E00E2E4D1 /* PSEffects.m */,
+				ED841140145AEC4E00E2E4D1 /* PSKonstants.h */,
+				ED841141145AEC4E00E2E4D1 /* PSPage.h */,
+				ED841142145AEC4E00E2E4D1 /* PSPage.m */,
+				ED841143145AEC4E00E2E4D1 /* PSPageCache.h */,
+				ED841144145AEC4E00E2E4D1 /* PSPageCache.m */,
+				ED841145145AEC4E00E2E4D1 /* PSPagesViewController.h */,
+				ED841146145AEC4E00E2E4D1 /* PSPagesViewController.m */,
+				ED841147145AEC4E00E2E4D1 /* PSPageView.h */,
+				ED841148145AEC4E00E2E4D1 /* PSPageView.m */,
+				ED841149145AEC4E00E2E4D1 /* PSPDFPageView.h */,
+				ED84114A145AEC4E00E2E4D1 /* PSPDFPageView.m */,
+				ED84114B145AEC4E00E2E4D1 /* PSPDFPageViewController.h */,
+				ED84114C145AEC4E00E2E4D1 /* PSPDFPageViewController.m */,
+			);
+			path = PaperStack;
+			sourceTree = "<group>";
+		};
+		ED841132145AEC4E00E2E4D1 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				ED841133145AEC4E00E2E4D1 /* UIImage+Scale.h */,
+				ED841134145AEC4E00E2E4D1 /* UIImage+Scale.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		ED841135145AEC4E00E2E4D1 /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				ED841136145AEC4E00E2E4D1 /* EAGLView.h */,
+				ED841137145AEC4E00E2E4D1 /* EAGLView.m */,
+				ED841138145AEC4E00E2E4D1 /* ES1Renderer.h */,
+				ED841139145AEC4E00E2E4D1 /* ES1Renderer.m */,
+				ED84113A145AEC4E00E2E4D1 /* ESCommon.h */,
+				ED84113B145AEC4E00E2E4D1 /* ESRenderer.h */,
+			);
+			path = GL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +249,7 @@
 		ED67EE6A138B12C900487AF1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Mutado;
 			};
 			buildConfigurationList = ED67EE6D138B12C900487AF1 /* Build configuration list for PBXProject "PaperStackDemo" */;
@@ -265,10 +277,10 @@
 				ED67EE82138B12C900487AF1 /* InfoPlist.strings in Resources */,
 				ED67EE8B138B12C900487AF1 /* MainWindow.xib in Resources */,
 				ED67EE91138B12C900487AF1 /* PaperStackDemoViewController.xib in Resources */,
-				ED67EE9C138B16AE00487AF1 /* example.pdf in Resources */,
-				ED9CD92F138CD1DB0076CC92 /* cover.png in Resources */,
-				ED9CD972138EF6E80076CC92 /* page.png in Resources */,
-				EDFE186A13909FBF00A7498E /* PSPlayerController.xib in Resources */,
+				ED67EE9C138B16AE00487AF1 /* book.pdf in Resources */,
+				EDB2B70513AD0F5200C2CD6E /* shadow_m.png in Resources */,
+				EDB2B70613AD0F5200C2CD6E /* shadow_tb.png in Resources */,
+				EDB2B70813AD11EA00C2CD6E /* shadow_bb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,15 +294,17 @@
 				ED67EE85138B12C900487AF1 /* main.m in Sources */,
 				ED67EE88138B12C900487AF1 /* PaperStackDemoAppDelegate.m in Sources */,
 				ED67EE8E138B12C900487AF1 /* PaperStackDemoViewController.m in Sources */,
-				ED2E26EC138C9A5A00BC1538 /* PSPageView.m in Sources */,
-				ED2E26EF138CB58800BC1538 /* PSPlayerController.m in Sources */,
-				ED9CD933138CD8FF0076CC92 /* UIImage+Scale.m in Sources */,
-				ED5C3E0513906BB800C87A53 /* PSDrawings.m in Sources */,
-				ED5C3E0813906C3300C87A53 /* PSPageCache.m in Sources */,
-				ED5C3E93139092C300C87A53 /* PSPage.m in Sources */,
-				ED5C3E94139092C300C87A53 /* EAGLView.m in Sources */,
-				ED5C3E95139092C300C87A53 /* ES1Renderer.m in Sources */,
-				EDB5EFF913A05D7F0005E98D /* PSEffects.m in Sources */,
+				ED84114D145AEC4E00E2E4D1 /* UIImage+Scale.m in Sources */,
+				ED84114E145AEC4E00E2E4D1 /* EAGLView.m in Sources */,
+				ED84114F145AEC4E00E2E4D1 /* ES1Renderer.m in Sources */,
+				ED841150145AEC4E00E2E4D1 /* PSDrawings.m in Sources */,
+				ED841151145AEC4E00E2E4D1 /* PSEffects.m in Sources */,
+				ED841152145AEC4E00E2E4D1 /* PSPage.m in Sources */,
+				ED841153145AEC4E00E2E4D1 /* PSPageCache.m in Sources */,
+				ED841154145AEC4E00E2E4D1 /* PSPagesViewController.m in Sources */,
+				ED841155145AEC4E00E2E4D1 /* PSPageView.m in Sources */,
+				ED841156145AEC4E00E2E4D1 /* PSPDFPageView.m in Sources */,
+				ED841157145AEC4E00E2E4D1 /* PSPDFPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,8 +380,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PaperStackDemo/PaperStackDemo-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PaperStackDemo/PaperStackDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -380,8 +396,9 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PaperStackDemo/PaperStackDemo-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PaperStackDemo/PaperStackDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

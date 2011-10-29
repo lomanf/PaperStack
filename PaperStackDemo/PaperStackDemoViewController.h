@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSPagesViewController.h"
 
-@interface PaperStackDemoViewController : UIViewController {
-    
+@interface PaperStackDemoViewController : UIViewController <PSPagesViewControllerDatasource> {
+    CGPDFDocumentRef pdf;
 }
 
 - (IBAction)launchPlayer;
