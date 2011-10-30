@@ -11,6 +11,7 @@
 
 #define kPSPagePaddingRatio                 0.015
 #define kPSPageSideRatio                    0.04
+#define kPSPageTimeCorrection               0.9
 
 #define kPSPageAnimationFriction            0.18
 #define kPSPageAnimationThreshold           0.005

@@ -11,6 +11,7 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 #import "PSDrawings.h"
+#import "PSKonstants.h"
 
 @interface PSPage ()
 
@@ -214,12 +215,19 @@
 
 - (void)deform
 {     
-    CGFloat time = PSDistance( SP, P ) * 0.9;
+    CGFloat time = fabs( PSVector(SP, P).x ) * kPSPageTimeCorrection; // iOS 5 Curl style
+//    CGFloat time = PSDistance( SP, P ) * kPSPageTimeCorrection;   // iBooks Curl style
     CGFloat angle = roundf( ( ( PSAngle( SP, P ) + 0.00001 ) * ( P.y > SP.y ? 1.0 : -1.0 ) + 0.00001 ) * 1000.0f ) / 1000.0f;
     CGFloat side = angle >= 0 ? 1.0 : -1.0;
     BOOL upsideFlag = angle < 0;
     CGFloat upside = upsideFlag ? 1.0 : -1.0;
+    
+    if ( ( !hasReverseCurl && P.x < 0.0 ) || ( hasReverseCurl && P.x > 0.0 ) ) {
+        time = kPSPageTimeCorrection - time;
+    }
 
+    NSLog(@"Time:%f",time);
+    
     // interpolate cone base
     CGFloat RB = fmax( height/columns, ( time / M_PI ) );
     

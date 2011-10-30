@@ -53,7 +53,7 @@
         
         // content view
         UIView *cView = [[UIView alloc] initWithFrame:self.bounds];
-        cView.backgroundColor = [UIColor yellowColor];
+        cView.backgroundColor = [UIColor whiteColor];
         [self addSubview:cView];
         self.contentView = cView;
         [cView release];
