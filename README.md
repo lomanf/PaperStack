@@ -16,7 +16,7 @@ This code was released because around 200 developers around the world ask for it
 If you decide to use this code or part of it for your own project, please do not forget people that spent time and passion on it. Here is the list of people to thanks:
 
 * [Mutado Mobile API & PaperStack team for the dynamic conical deformation and finger tracking](http://mutado.com/mobile)
-* [W. Dana Nuon for the "initial" conical algorithm mesh deformation and source](http://wdnuon.blogspot.com/2010/05/implementing-ibooks-page-curling-using.html)
+* [W. Dana Nuon for the "basic" conical algorithm mesh deformation and source](http://wdnuon.blogspot.com/2010/05/implementing-ibooks-page-curling-using.html)
 * [Jeff LaMarche for his extensive and incredibly helpful OpenGL ES from the ground up tutorials](http://iphonedevelopment.blogspot.com/2009/05/opengl-es-from-ground-up-table-of.html)
 
 ## License
